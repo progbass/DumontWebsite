@@ -1,0 +1,287 @@
+
+//@import './styles/reset';
+@import './styles/mixins';
+@import './styles/colors';
+@import './styles/typography';
+$images_path: './img/';
+$margin-base: 0.9375em;
+$context: 1968;
+$bp-mobile-sm: 20em;
+$bp-mobile-m: 25em;
+$bp-mobile-l: 30em;
+$bp-tablet-sm: 30em;
+$bp-tablet-m: 45.5em;
+$bp-tablet-l: 50em;
+$bp-desktop-sm: 50em;
+$bp-desktop-m: 60em;
+$bp-desktop-l: 64em;
+$bp-desktop-xl: 80em;
+
+*{
+  outline: none;
+  box-sizing: border-box;
+}
+html, body{
+  position: relative;
+  font-family: 'Open Sans', sans-serif;
+}
+ul{
+  padding: 0; margin: 0; border: none;
+  position: relative;
+  list-style: none;
+}
+a{
+  color: inherit;
+  text-decoration: none;
+}
+
+.image--responsive{
+  width: 100%;
+  height: auto;
+}
+
+
+
+.section{
+  position: relative;
+  &--spacing{
+    padding: ($margin-base*2) $margin-base;
+  }
+  &--dark{
+    color: white;
+    background: $color3;
+  }
+
+  @media screen and (min-width: $bp-tablet-m){
+    &__module,
+    &--spacing{
+      padding-left: 0;
+      padding-right: 0;
+      margin: auto;
+    }
+    &__module{
+      padding: ($margin-base*3) 0;
+      max-width: 90%;
+    }
+  }
+}
+
+.title-main{
+  @include type-setting(2);
+  @media screen and (min-width: $bp-tablet-m){
+    @include type-setting(3);
+  }
+  @media screen and (min-width: $bp-desktop-sm){
+    @include type-setting(4);
+  }
+  @media screen and (min-width: $bp-desktop-m){
+    @include type-setting(5);
+  }
+  @media screen and (min-width: $bp-desktop-l){
+    @include type-setting(6);
+  }
+}
+
+.accordion-collapsable{
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 600ms ease;
+
+  &:before{
+    content: '';
+    display: block;
+    position: relative;
+    height: $margin-base*2;
+  }
+
+  &--open{
+    max-height: 1000px;
+    transition: max-height 600ms ease;
+  }
+
+  @media screen and (min-width: $bp-tablet-m){
+    max-height: none;
+    &:before{
+      display: none;
+    }
+  }
+}
+.accordion-trigger{
+  background: url($images_path+'icon-arrow.svg') no-repeat right center;
+  background-size: 25px;
+
+  &--open{
+    background-image: url($images_path+'icon-arrow--close.svg');
+  }
+
+  //////////////////////////////////
+  // <MEDIA QUERIES
+  //////////////////////////////////
+  @media screen and (min-width: $bp-tablet-m){
+    background: none;
+  }
+}
+
+////////////////////////////
+// CV & PROFILE MODALBOX
+////////////////////////////
+.modalbox{
+  display: none;
+  position: fixed;
+  background: rgba(#000, 0.5);
+  padding: $margin-base;
+  top: 0; left: 0;
+  z-index: 11;
+  width: 100%;
+  height: 100vh;
+
+  &--open{
+    display: block;
+  }
+  &__container{
+    width: 90%;
+    max-width: 40em;
+  }
+}
+.profile{
+  position: relative;
+  background: white;
+  color: #121212;
+  padding: $margin-base*2;
+  margin: auto;
+  overflow: auto;
+  height: 100%;
+
+  // PERSONAL IFORMATION
+  &__info{
+    padding-bottom: $margin-base*0.5;
+    margin-bottom: $margin-base*0.5;
+    border-bottom: solid #{$margin-base*0.5} $color2;
+    .name{
+      @include type-setting(3);
+      color: $color4;
+      text-transform: uppercase;
+      margin-bottom: 0;
+    }
+    .role{
+      @include type-setting(2);
+      color: $color4;
+      margin-bottom: 0;
+    }
+    .email{
+      @include type-setting(1);
+      line-height: 1.7em;
+      color: $color4;
+      font-weight: 600;
+    }
+  }
+  
+  // CV CONTENT
+  &__content{
+    padding: $margin-base 0;
+  }
+
+  // SKILL MODULE
+  .skills{
+    position: relative;
+    // Modules
+    &__module{
+      position: relative;
+      margin-bottom: $margin-base*1.5;
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+    .subtitle{
+      @include type-setting(1);
+      color: $color2
+    }
+
+    // List Items
+    .list-item{
+      display: inline-block;
+      @include type-setting(0);
+
+      &:before{
+        content: ' / ';
+        display: inline-block;
+        position: relative;
+      }
+      &:first-child:before{display: none;}
+    }
+    
+    /////////////////
+    // Articles
+    .articles{
+      .list-item{
+        display: block;
+        padding-bottom: 0.2em;
+        border-bottom: solid 4px $color2;
+        color: $color4;
+        font-weight: 600;
+      }
+    }
+  }
+}
+/////////////////
+// SERVICES LIST
+.our-services-list{
+  position: relative;
+  
+  // SERVICE DESCRIPTION
+  .service{
+    //background: $color3;
+    color: white;
+    //max-height: 0;
+
+    &__content{
+      padding: ($margin-base*2) $margin-base;
+    }
+
+    // Header
+    .header{
+      margin-bottom: $margin-base*2; 
+      .subtitle{
+        margin: 0;
+        @include type-setting(0)
+      }
+      .title{
+        margin: 0;
+        @include type-setting(3)
+      }
+    }
+
+    // Content
+    .detail{
+      position: relative;
+
+      // Offered Services
+      .offer{
+        position: relative;
+        &__title{
+          @include type-setting(0);
+          margin: 0 0 $margin-base;
+        }
+        &__list{
+          list-style: disc;
+          list-style-position: outside;
+          left: 1em;
+          width: calc(100% - 1em);
+        }
+        &__item{
+          margin: 0 0 $margin-base;
+        }
+      }
+    }
+  }
+}
+
+
+@import './styles/header';
+@import './styles/about-us';
+@import './styles/our-team';
+@import './styles/our-services';
+@import './styles/resources';
+@import './styles/contact';
+
+

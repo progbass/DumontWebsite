@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600');
+
+@function type-scale($level) {
+	@return map-get($type-scale, $level);
+}
+@function line-height($level) {
+  @return map-get($line-heights, $level);
+}
+@mixin type-setting($level: 0) {
+	font-size: #{type-scale($level)}em;
+	line-height: line-height($level);
+}
+@mixin headings_style() {
+	@for $i from 1 through 6 {
+		h#{$i}{
+			@include type-setting( (6 - $i) );
+			font-family: $font_content;
+			margin: 0 auto 1em;
+			font-weight: 600;
+		}
+	}
+}
+
+$fonts_path: '../fonts/';
+$font_content: 'Open Sans', 'Helvetica', 'Arial', sans-serif;
+$font_title: 'Museo 100', 'Georgia', 'Verdana', serif;
+$font_title_bold: 'Museo 300', 'Georgia', 'Verdana', serif;
+$font_size_base: 1rem;
+$font_scale_ratio: 1.25;
+$base_line_height: $font_size_base * 1.5;
+$paragraph-spacing: false;
+
+
+// multiplier * (ratio ^ step)
+// 1 * (1.25 ^ 1) = 1.333
+$type-scale: (
+	-2: 1 * pow($font_scale_ratio, -2),
+	-1: 1 * pow($font_scale_ratio, -1),
+	0: 1,
+	1: 1 * pow($font_scale_ratio, 1),
+	2: 1 * pow($font_scale_ratio, 2),
+	3: 1 * pow($font_scale_ratio, 3),
+	4: 1 * pow($font_scale_ratio, 4),
+	5: 1 * pow($font_scale_ratio, 5),
+	6: 1 * pow($font_scale_ratio, 6)
+);
+
+$line-heights: (
+	-1: $base_line_height,
+	0: $base_line_height,
+	1: $base_line_height,
+	2: $base_line_height * 1.25,
+	3: $base_line_height * 1.5,
+	4: $base_line_height * 2,
+	5: $base_line_height * 2,
+	6: $base_line_height * 2
+);
+
+
+@font-face {
+	// font-family: 'Museo 100';
+	// src: url($fonts_path+'Museo-100.eot');
+	// src: url($fonts_path+'Museo-100.eot?#iefix') format('embedded-opentype'),
+	// 	url($fonts_path+'Museo-100.woff') format('woff'),
+	// 	url($fonts_path+'Museo-100.ttf') format('truetype');
+	// font-weight: 100;
+	// font-style: normal;
+}
+@font-face {
+	// font-family: 'Museo 300';
+	// src: url($fonts_path+'Museo-300.eot');
+	// src: url($fonts_path+'Museo-300.eot?#iefix') format('embedded-opentype'),
+	// 	url($fonts_path+'Museo-300.woff') format('woff'),
+	// 	url($fonts_path+'Museo-300.ttf') format('truetype');
+	// font-weight: 300;
+	// font-style: normal;
+}
+
+
+html{
+    font-size: 16px;
+    font-size: 1em;
+}
+body {
+  font-family: $font_content;
+  font-weight: normal;
+  @include type-setting(0);
+  color: $color;
+}
+
+@include headings_style;
+
+p {
+	@include type-setting(0);
+	margin: auto auto 1.5em;
+	@if $paragraph-spacing == true {
+	  & + p {
+		text-indent: 1.5em;
+		margin-top: -1.5em;
+	  }
+	}
+}
+
+small {
+	@include type-setting(-1);
+}
+
+blockquote {
+	+ figcaption cite {
+	  // @extend %typl8-cite;
+	}
+}
+	
