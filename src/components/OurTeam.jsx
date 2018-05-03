@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import config from '../config';
 import withAccordion from '../withAccordion';
+import ProfileWindow from './modalbox/ProfileWindow';
 
 class OurTeam extends Component {
   constructor(props){
@@ -18,7 +19,7 @@ class OurTeam extends Component {
     this.closeModalBox = this.closeModalBox.bind(this);
   }
   openModalBox(member){
-    this.props.openModalBox(member)
+    this.props.openModalBox(ProfileWindow, {teamMember:member} );
   }
   closeModalBox(e){
     e.preventDefault();

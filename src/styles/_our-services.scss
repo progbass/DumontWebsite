@@ -2,9 +2,6 @@
 // OUR SERVICES
 ////////////////////////////////
 .our-services{
-	.modalbox{
-		background: $color3;
-	}
 	.section__module{
 		//padding: 0;
 	}
@@ -86,25 +83,7 @@
 		}
 	}
 
-	/////////////////////////////////////////////////
-	// MEDIA QUERIES
-	/////////////////////////////////////////////////
-	@media screen and (min-width: $bp-tablet-m){
-		$services-background: (
-			patents: $images_path+'services/patents-bg.jpg',
-			trademarks: $images_path+'services/trademarks-bg.jpg',
-			litigation: $images_path+'services/litigation-bg.jpg',
-			enforcement: $images_path+'services/enforcement-bg.jpg',
-			copyright: $images_path+'services/copyright-bg.jpg',
-			data-protection: $images_path+'services/data-protection-bg.jpg'
-		);
-		@each $name, $icon in $services-background {
-			.modalbox.#{$name}{
-				background: url($icon) no-repeat center;
-				background-size: cover;
-			}
-		}
-	}
+	
 	@media screen and (min-width: $bp-tablet-l){
 		//
 		&__list{

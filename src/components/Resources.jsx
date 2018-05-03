@@ -1,33 +1,55 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
 import withAccordion from '../withAccordion';
+import config from '../config';
 
 class Resources extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      content: [],
+      contentLoaded: false,
+    }
+  }
+  componentDidMount(){
+    // Load Content
+    axios.get(`${config.api_baseURL}/pages/44/`)
+    .then(response => {
+      this.setState({
+        content: response.data,
+        contentLoaded: true
+      })
+    });
+  }
   render() {
     const {isOpen} = this.props;
+    const { content:resources, members} = this.state;
+
+    if(!resources) return null;
+    console.log(resources)
+    // Render Component
     return (
       <section className="section section--spacing resources">
         <div className="section__module">
+          
           <div className="resources__content">
-            <p className="resources__description">This section allows our clients to easily download the power of attorney 
-            and assignment documents for diﬀerent ﬁlings in Mexico. <br/>
-            These documents will be useful in various patent, trademark, copyright 
-            and domain name ﬁlings.</p>
+            {resources.acf && (
+              <div>
+                <div dangerouslySetInnerHTML={{__html:resources.content.rendered}} />
 
-            <ul className="resources__list">
-              <li className="resources__item">
-                <span className="name">Assignment of rights </span>
-                <p>Document required for assignment of rights</p>
-              </li>
-              <li className="resources__item">
-                <span className="name">Power Attorney E </span>
-                <p>Document required performing different formalities for Entities</p>
-              </li>
-              <li className="resources__item">
-                <span className="name">Power Attorney PI </span>
-                <p>Document required performing different formalities for Private individuals </p>
-              </li>
-            </ul>
+                <ul className="resources__list">
+                  {resources.acf.resources.map( (resource, index) => (
+                    <li className="resources__item" key={index}>
+                      <span className="name"><a target="_blank" href={resource.document.url}>{resource.name}</a></span>
+                      <p>{resource.description}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
+          
           <div className="resources__title">
             <h2 className="title-main">Resources</h2>
           </div>

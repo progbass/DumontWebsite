@@ -22,6 +22,7 @@ class App extends Component {
       mobileMode: true,
       shouldOpenModalBox: false,
       modalBoxContent: null,
+      modalBoxProps: null,
       teamMember: null
     }
     this.onResize = this.onResize.bind(this);
@@ -39,22 +40,24 @@ class App extends Component {
       mobileMode: window.innerWidth > 620
     })
   }
-  openModalBox(window){
+  openModalBox(component, props){
     //const shouldOpenWindow = flag ? flag : this.state.shouldOpenModalBox;
     this.setState({
       shouldOpenModalBox: true,
-      modalBoxContent: window
+      modalBoxContent: component,
+      modalBoxProps: props
     })
   }
   closeModalBox(){
     this.setState({
       shouldOpenModalBox: false,
-      modalBoxContent: null
+      modalBoxContent: null,
+      modalBoxProps: null
     })
   }
   render() {
-    const { shouldOpenModalBox, modalBoxContent } = this.state;
-    console.log(modalBoxContent, ' open')
+    const { shouldOpenModalBox, modalBoxContent:ModalBoxContent, modalBoxProps } = this.state;
+
     return (
       <Router>
         <Scroller>
@@ -74,9 +77,9 @@ class App extends Component {
             <Resources />
             <Contact />
 
-            {(shouldOpenModalBox && modalBoxContent) && (
-              <div onClick={this.closeModalBox} className={`modalbox section--spacing ${shouldOpenModalBox ? 'modalbox--open' : ''}`}>
-                {modalBoxContent}
+            {(shouldOpenModalBox && ModalBoxContent) && (
+              <div onClick={this.closeModalBox} className={`modalbox ${shouldOpenModalBox ? 'modalbox--open' : ''}`}>
+                {<ModalBoxContent {...modalBoxProps} />}
               </div>
             )}
           </div>

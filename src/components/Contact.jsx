@@ -10,7 +10,11 @@ class Contact extends Component {
   }
   componentDidMount(){}
   handleChange(event){
-    this.setState({value: event.target.value});
+    const {name, value} = event.target;
+    console.log(name, value)
+    this.setState({
+      [name]: value
+    });
   }
   handleSubmit(event){
     alert('A name was submitted: ' + this.state.value);
@@ -27,17 +31,20 @@ class Contact extends Component {
             <form className="form" onSubmit={this.handleSubmit}>
               <div className="form__data">
                 <label className="form__label" htmlFor="name_txt">Name</label>
-                <input type="text" name="name" id="name_txt" value={this.state.value} onChange={this.handleChange} />
+                <input type="text" name="name" id="name_txt" value={this.state.name} onChange={this.handleChange} />
               </div>
               <div className="form__data">
                 <label className="form__label" htmlFor="mail_txt">Email</label>
-                <input type="text" name="email" id="mail_txt" value={this.state.value} onChange={this.handleChange} />
+                <input type="text" name="email" id="mail_txt" value={this.state.email} onChange={this.handleChange} />
               </div>
               <div className="form__data">
                 <label className="form__label" htmlFor="message_txt">Your Message</label>
-                <textarea name="message" id="message_txt" rows="7" onChange={this.handleChange}>
-                  {this.state.value}
-                </textarea>
+                <textarea 
+                  name="message" 
+                  id="message_txt" 
+                  rows="7" 
+                  onChange={this.handleChange}
+                  value={this.state.message} />
               </div>
               <div className="form__data">
                 <input type="submit" name="submit" id="submit_btn" value="Contact Us" />

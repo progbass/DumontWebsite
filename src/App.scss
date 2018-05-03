@@ -129,7 +129,7 @@ a{
   display: none;
   position: fixed;
   background: rgba(#000, 0.5);
-  padding: $margin-base;
+  //padding: $margin-base;
   top: 0; left: 0;
   z-index: 11;
   width: 100%;
@@ -152,8 +152,35 @@ a{
   overflow: auto;
   height: 100%;
 
+  // META INFORMATION
+  &__meta{
+    position: absolute;
+    right: $margin-base; bottom: $margin-base;
+    width: 1.5em;
+    .icon{
+      position: relative;
+      display: block;
+      @include responsive-container(100%);
+      @include hide-text();
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 100%;
+    }
+    .card{
+      background-image: url($images_path+'icon-card.svg');
+    }
+    .linkedin{
+      background-image: url($images_path+'icon-linkedin.svg');
+    }
+    .print{
+      background-image: url($images_path+'icon-print.svg');
+    }
+  }
+
   // PERSONAL IFORMATION
   &__info{
+    position: relative;
     padding-bottom: $margin-base*0.5;
     margin-bottom: $margin-base*0.5;
     border-bottom: solid #{$margin-base*0.5} $color2;
@@ -198,23 +225,46 @@ a{
     }
 
     // List Items
-    .list-item{
-      display: inline-block;
+    .list{
+      margin-bottom: 0.5em;
       @include type-setting(0);
-
-      &:before{
-        content: ' / ';
-        display: inline-block;
-        position: relative;
+      &__item{
+        display: block;
       }
-      &:first-child:before{display: none;}
+    }
+    
+    /////////////////
+    // LANGUAGES
+    .languages{
+      .language{
+        display: inline-block;
+        &:before{
+          content: ' / ';
+          display: inline-block;
+          position: relative;
+        }
+        &:first-child:before{display: none;}
+      }
+    }
+    
+    /////////////////
+    // AWARDS
+    .awards{
+      .award{
+        display: inline-block;
+        width: 4em;
+        margin-right: 1em;
+      }
     }
     
     /////////////////
     // Articles
     .articles{
-      .list-item{
-        display: block;
+      .article{
+        margin-bottom: 0.75em;
+      }
+      .article a{
+        display: inline-block;
         padding-bottom: 0.2em;
         border-bottom: solid 4px $color2;
         color: $color4;
@@ -223,10 +273,36 @@ a{
     }
   }
 }
+
 /////////////////
 // SERVICES LIST
+.our-services-modalbox{
+  background-color: $color3;
+  width: 100%; height: 100%;
+
+  /////////////////////////////////////////////////
+  // MEDIA QUERIES
+  /////////////////////////////////////////////////
+  @media screen and (min-width: $bp-tablet-m){
+    $services-background: (
+      patents: $images_path+'services/patents-bg.jpg',
+      trademarks: $images_path+'services/trademarks-bg.jpg',
+      litigation: $images_path+'services/litigation-bg.jpg',
+      enforcement: $images_path+'services/enforcement-bg.jpg',
+      copyright: $images_path+'services/copyright-bg.jpg',
+      personal-data-protection: $images_path+'services/data-protection-bg.jpg'
+    );
+    @each $name, $icon in $services-background {
+      &.#{$name}{
+        background: url($icon) no-repeat center;
+        background-size: cover;
+      }
+    }
+  }
+}
 .our-services-list{
   position: relative;
+  overflow: auto;
   
   // SERVICE DESCRIPTION
   .service{

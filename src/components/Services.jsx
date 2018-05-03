@@ -24,7 +24,7 @@ class Services extends Component {
     scrollToComponent(this.container_ref, {...scrollConfig, offset: -800});
   }
   openModalBox(service){
-    this.props.openModalBox(<ServicesWindow service={service} />);
+    this.props.openModalBox(ServicesWindow, {service: service});
     //scrollToComponent(this.container_ref, scrollConfig)
   }
   componentDidMount(){
@@ -55,7 +55,7 @@ class Services extends Component {
                     to={`/services/${service.slug}`} 
                     className="section__link" 
                     onClick={(e) => {
-                      e.preventDefault();
+                      //e.preventDefault();
                       this.openModalBox(service)
                     }}
                   >

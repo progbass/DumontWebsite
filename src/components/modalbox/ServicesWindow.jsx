@@ -18,20 +18,21 @@ class ServicesWindow extends Component {
   }
   render() {
     const {service} = this.props;
+    console.log(service)
     //const path = this.props.location.pathname.split('/').pop() || '';
 
     if(!service) return null;
 
     // Render Component
     return (
-      <div className="section__module">
-        <ul className="our-services-list" ref={(section) => { this.container_ref = section; }}>
+      <div className={`our-services-modalbox ${service.slug}`}>
+        <ul className="section__module our-services-list" ref={(section) => { this.container_ref = section; }}>
           <Route path="/services/patents" component={()=><Patents onClick={this.closeWindow} />} />
           <Route path="/services/trademarks" component={()=><Trademarks onClick={this.closeWindow} />} />
           <Route path="/services/litigation" component={()=><Litigation onClick={this.closeWindow} />} />
           <Route path="/services/copyright" component={()=><Copyright onClick={this.closeWindow} />} />
           <Route path="/services/enforcement" component={()=><Enforcement onClick={this.closeWindow} />} />
-          <Route path="/services/data-protection" component={()=><PersonalData onClick={this.closeWindow} />} />
+          <Route path="/services/personal-data-protection" component={()=><PersonalData onClick={this.closeWindow} />} />
         </ul>
       </div>
     );
