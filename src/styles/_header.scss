@@ -8,7 +8,7 @@
   .fixer{
     width: 100%;
     padding: $margin-base;
-    z-index: 2;
+    z-index: 9999;
     background-color: $color;
   }
   
@@ -113,8 +113,26 @@
     margin-bottom: $margin-base;
 
     &__item{
+      position: relative;
       //margin-left: '1em';
       margin-bottom: $margin-base*0.75;
+      &:after{
+        display: block;
+        position: absolute;
+        content: '';
+        height: 3px;
+        width: 100%;
+        transform: scale(0, 1);
+        background: $color2;
+        transition: transform 120ms ease;
+      }
+
+      &:hover,
+      &.active{
+        &:after{
+        transform: scale(1, 1);
+        }
+      }
 
       a{
         color: #fff;
@@ -134,6 +152,13 @@
       flex-flow: row wrap;
     }
 
+    .logo{
+      
+      &__link{
+        margin-bottom: 0;
+      }
+    }
+
     &__tools{
       top: 50%; right: $margin-base;
       transform: translateY(-50%);
@@ -142,7 +167,6 @@
     .menu{
       display: block;
       margin: 0;
-
       &__item{
         display: inline-block;
         margin-left: 1.5em;

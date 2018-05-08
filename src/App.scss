@@ -128,10 +128,10 @@ a{
 .modalbox{
   display: none;
   position: fixed;
-  background: rgba(#000, 0.5);
+  cursor: url($images_path+'icon-close.svg');
   //padding: $margin-base;
   top: 0; left: 0;
-  z-index: 11;
+  z-index: 99999;
   width: 100%;
   height: 100vh;
 
@@ -141,6 +141,13 @@ a{
   &__container{
     width: 90%;
     max-width: 40em;
+  }
+  &__overlay{
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(#000, 0.5);
   }
 }
 .profile{
@@ -166,6 +173,13 @@ a{
       background-position: center;
       background-repeat: no-repeat;
       width: 100%;
+
+      a{
+        position: absolute;
+        top: 0; left: 0;
+        display: block;
+        width: 100%; height: 100%
+      }
     }
     .card{
       background-image: url($images_path+'icon-card.svg');
@@ -184,22 +198,36 @@ a{
     padding-bottom: $margin-base*0.5;
     margin-bottom: $margin-base*0.5;
     border-bottom: solid #{$margin-base*0.5} $color2;
+  }
+  &__head{
+    width: 86%;
     .name{
-      @include type-setting(3);
+      @include type-setting(2);
       color: $color4;
       text-transform: uppercase;
       margin-bottom: 0;
     }
     .role{
-      @include type-setting(2);
+      @include type-setting(1);
       color: $color4;
       margin-bottom: 0;
     }
     .email{
-      @include type-setting(1);
+      @include type-setting(0);
       line-height: 1.7em;
       color: $color4;
       font-weight: 600;
+    }
+    @media screen and (min-width: $bp-tablet-sm){
+      .name{
+        @include type-setting(3);
+      }
+      .role{
+        @include type-setting(2);
+      }
+      .email{
+        @include type-setting(1);
+      }
     }
   }
   
@@ -350,14 +378,144 @@ a{
       }
     }
   }
+
+  @media screen and (min-width: $bp-tablet-l){
+    //
+    .service{
+      display: flex;
+      flex-flow: row nowrap;
+      &.patents .service__content{
+        width: 60%;
+      }
+      &.trademarks .service__content{
+        width: 65%;
+        margin: auto;
+        text-align: center;
+      }
+      &.litigation{
+        justify-content: flex-end;
+        .service__content{
+          width: 60%;
+          text-align: right;
+        }
+      }
+      &.copyright .service__content{
+        width: 65%;
+        margin: auto;
+        text-align: center;
+      }
+      &.enforcement .service__content{
+        width: 60%;
+      }
+      &.personal-data-protection{
+        justify-content: flex-end;
+        .service__content{
+          width: 60%;
+          text-align: right;
+        }
+      }
+    }
+  }
+}
+
+
+/////////////////
+// FOOTER NEWS
+.news-modalbox{
+  position: relative;
+  background: white;
+  color: $color;
+  padding: $margin-base*2;
+  margin: auto;
+  overflow: auto;
+  height: 100%;
+
+  &__info{
+    .name{
+      margin-bottom: 0.5em;
+    }
+  }
+
+  // META INFORMATION
+  &__meta{
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    
+    .date{}
+    .source{}
+  }
+
+  // Cover
+  &__cover{
+    overflow: hidden;
+    position: relative;
+    @include responsive-container(45%);
+    img{
+      @include center-content(50%, 50%);
+      position: absolute;
+    }
+  }
+  
+  // CV CONTENT
+  &__content{
+    color: $color3;
+    padding: $margin-base 0;
+  }
+  
+  @media screen and (min-width: $bp-tablet-m){
+    // META INFORMATION
+    &__meta{
+      flex-flow: row nowrap;
+      justify-content: space-between;
+    }
+
+  }
+}
+
+/////////////////
+// LEGALS
+.legals-modalbox{
+  position: relative;
+  background: white;
+  color: $color;
+  padding: $margin-base*2;
+  margin: auto;
+  overflow: auto;
+  height: 100%;
+  
+  // CONTENT
+  &__content{
+    color: $color3;
+    padding: $margin-base 0;
+    h1, h2, h3, h4, h5{
+      color: $color2;
+      @include type-setting(0)
+    }
+  }
+  
+  @media screen and (min-width: $bp-tablet-m){
+    // META INFORMATION
+    &__meta{
+      flex-flow: row nowrap;
+      justify-content: space-between;
+    }
+
+  }
 }
 
 
 @import './styles/header';
-@import './styles/about-us';
-@import './styles/our-team';
-@import './styles/our-services';
-@import './styles/resources';
-@import './styles/contact';
+@import './styles/footer';
+.sections-wrapper{
+  @import './styles/about-us';
+  @import './styles/our-team';
+  @import './styles/our-services';
+  @import './styles/news';
+  @import './styles/resources';
+  @import './styles/contact';
+}
+
 
 

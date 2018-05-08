@@ -13,7 +13,7 @@ class Scroller extends React.Component {
         || target === 'news'
         || target === 'resources'
         || target === 'contact'){
-        scrollToComponent(document.querySelector('.'+target), scrollConfig);
+        scrollToComponent(document.querySelector('.section.'+target), scrollConfig);
       }
     }
   }

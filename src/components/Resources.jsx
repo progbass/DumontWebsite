@@ -27,7 +27,7 @@ class Resources extends Component {
     const { content:resources, members} = this.state;
 
     if(!resources) return null;
-    console.log(resources)
+    
     // Render Component
     return (
       <section className="section section--spacing resources">

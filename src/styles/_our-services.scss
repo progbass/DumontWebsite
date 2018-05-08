@@ -82,46 +82,4 @@
 			}
 		}
 	}
-
-	
-	@media screen and (min-width: $bp-tablet-l){
-		//
-		&__list{
-			
-			.service{
-				display: flex;
-				flex-flow: row nowrap;
-				&.patents .service__content{
-					width: 60%;
-				}
-				&.trademarks .service__content{
-					width: 65%;
-					margin: auto;
-					text-align: center;
-				}
-				&.litigation{
-					justify-content: flex-end;
-					.service__content{
-						width: 60%;
-						text-align: right;
-					}
-				}
-				&.copyright .service__content{
-					width: 65%;
-					margin: auto;
-					text-align: center;
-				}
-				&.enforcement .service__content{
-					width: 60%;
-				}
-				&.personal-data-protection{
-					justify-content: flex-end;
-					.service__content{
-						width: 60%;
-						text-align: right;
-					}
-				}
-			}
-		}
-	}
 }

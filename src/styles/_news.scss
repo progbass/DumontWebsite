@@ -2,13 +2,11 @@
 ////////////////////////////////
 // OUR TEAM
 ////////////////////////////////
-.our-team{
+.news{
   /////////////////////
   // HEROE BANNER
   /////////////////////
   .heroe-banner{
-    background: #525252;
-    color: white;
 
     .title-main{
       margin: 0;
@@ -18,9 +16,6 @@
     // <MEDIA QUERIES
     //////////////////////////////////
     @media screen and (min-width: $bp-tablet-m){
-      background: #525252 url($images_path+'ourteam-bg.jpg') no-repeat bottom;
-      background-size: contain;
-      padding-bottom: 12em;
       .title-main{
         margin-bottom: 1em;
         line-height: 1em;
@@ -40,46 +35,33 @@
         width: 50%;
       }
     }
-    @media screen and (min-width: $bp-desktop-l){
-      padding-bottom: 15em;
-      background-size: 1280px;
-    }
   }
   
 
   /////////////////////
-  // TEAM MEMBERS
+  // NEWS CONTAINER
   /////////////////////
-  .team{
+  .news-container{
     /////////////////
-    // MEMBERS LIST
-    &__list{
+    // NEWS LIST
+    .news-list{
       display: flex;
       flex-flow: row wrap;
       justify-content: space-between;
+      background: white;
       
-      // SINGLE MEMBER
-      .member{
+      // SINGLE POST
+      .news{
+        background: white;
         position: relative;
-        width: calc(50% - #{$margin-base/2});
-        margin-bottom: $margin-base;
-        &--cyan .member__info{
-          background: $color4;
-        }
+        border-right: solid 10px transparent;
 
         // Member Image
         &__cover{
-          @include responsive-container( percentage(532/397) );
-          -webkit-filter: grayscale(100%);
-          filter: grayscale(100%);
-          filter: gray;
-
-          &:hover{
-            filter: none;
-          }
+          @include responsive-container( 67% );
           .cover-link{
             position: absolute;
-            top: 0;
+            top: 0; left: 0;
             width: 100%; height: 100%
           }
         }
@@ -87,25 +69,17 @@
         // Member Card
         &__info{
           position: relative;
-          right: 0;//-($margin-base/2);
-          bottom: 0;//-($margin-base/2);
-          padding: $margin-base/2;
-          width: 100%;//calc(100% - #{$margin-base});
-          height: 3em;
-          background: $color2;
-          color: #fff;
+          padding: $margin-base/2 0;
+          width: 100%;
+          color: $color;
           line-height: 0em;
+          text-align: left;
 
           .name{
             @include type-setting(0);
             font-weight: 400;
             margin: 0 0 0;
             line-height: 1.12em;
-          }
-          .role{
-            @include type-setting(-1);
-            font-weight: 100;
-            line-height: 1.25em;
           }
         }
       }
@@ -147,6 +121,62 @@
         .member{
           width: calc(20% - #{$margin-base});
         }
+      }
+    }
+  }
+
+  /////////////////
+  // AWARDS LIST
+  .awards{
+    position: relative;
+    
+    // SINGLE MEMBER
+    &__list{
+      display: flex;
+      flex-flow: row wrap;
+      position: relative;
+
+      // Awad Image
+      .award{
+        display: inline-block;
+        width: 5em;
+        margin: 0 1em 1em;
+      }
+    }
+  }
+
+
+  /////////////////
+  // Articles
+  .articles{
+    .article{
+      margin-bottom: 0.75em;
+    }
+    .article a{
+      display: inline-block;
+      padding-bottom: 0.2em;
+      border-bottom: solid 4px $color2;
+      color: $color4;
+      font-weight: 600;
+    }
+  }
+
+  //////////////////////
+  // ASSOCIATIONS LIST
+  .associations{
+    position: relative;
+    
+    // SINGLE MEMBER
+    &__list{
+      display: flex;
+      flex-flow: row wrap;
+      position: relative;
+
+      // Awad Image
+      .association{
+        display: inline-block;
+        width: 5em;
+        margin: 0 1em 1em;
       }
     }
   }

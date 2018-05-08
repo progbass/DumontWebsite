@@ -8,10 +8,11 @@ class Contact extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  componentDidMount(){}
+  componentDidMount(){
+
+  }
   handleChange(event){
     const {name, value} = event.target;
-    console.log(name, value)
     this.setState({
       [name]: value
     });
@@ -54,7 +55,7 @@ class Contact extends Component {
           
           <div className="contact__map">
             <div className="map">
-              <iframe
+              <iframe    
                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15057.437436256088!2d-99.19313722333992!3d19.353586509745995!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8f00bdfdf9db3762!2sDumont!5e0!3m2!1ses-419!2smx!4v1525216310863" 
                 width="100%" 
                 height="100%" 

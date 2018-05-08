@@ -36,7 +36,7 @@ class OurTeam extends Component {
     });
 
     // Load Team Members
-    axios.get(`${config.api_baseURL}/team-members/`)
+    axios.get(`${config.api_baseURL}/team-members?per_page=100`)
     .then(response => {
       this.setState({
         members: response.data,
@@ -76,7 +76,7 @@ class OurTeam extends Component {
             <div className="section__module team">
               <ul className="team__list section--spacing">
                 {members.map(member => (
-                  <li className="member" key={member.id} >
+                  <li className={`member ${member.acf.profile_color === 'cyan' ? 'member--cyan' : ''}`} key={member.id} >
                     <div className="member__cover">
                       <Link 
                         className="cover-link" 
@@ -94,7 +94,7 @@ class OurTeam extends Component {
                         )}
                       </Link>
                     </div>
-                    <div className="member__info member__info--blue">
+                    <div className="member__info member__info">
                       <h3 className="name">{member.title.rendered}</h3>
                       <span className="role">{member.acf.role}</span>
                     </div>

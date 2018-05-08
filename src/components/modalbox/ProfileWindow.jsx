@@ -18,8 +18,6 @@ class ProfileWindow extends Component {
   }
   render() {
     const {teamMember} = this.props;
-    console.log(teamMember)
-    //const path = this.props.location.pathname.split('/').pop() || '';
 
     if(!teamMember) return null;
 
@@ -27,20 +25,22 @@ class ProfileWindow extends Component {
     return (
       <div className="modalbox__container profile section--spacing ">
         <div className="profile__info">
-          <h2 className="name">{teamMember.title.rendered}</h2>
-          <h3 className="role">{teamMember.acf.role}</h3>
-          <span className="email">{teamMember.acf.email}</span>
+          <div className="profile__head"> 
+            <h2 className="name">{teamMember.title.rendered}</h2>
+            <h3 className="role">{teamMember.acf.role}</h3>
+            <span className="email">{teamMember.acf.email}</span>
+          </div>
 
           <div className="profile__meta">
-          
-            <div className="icon print">
-              <a href="#" onClick={e=>{e.preventDefault();}}>Imprimir</a>
-            </div>
+            {teamMember.acf.cv !== "" && (
+              <div className="icon print">
+                <a href={teamMember.acf.cv} target="_blank">Imprimir</a>
+              </div>
+            )}
             
-            
-            <div className="icon card">
+            {/*<div className="icon card">
               <a href="#" onClick={e=>{e.preventDefault();}}>Info</a>
-            </div>
+            </div>*/}
             
             {teamMember.acf.linkedin !== "" && (
               <div className="icon linkedin">

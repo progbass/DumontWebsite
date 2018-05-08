@@ -24,7 +24,7 @@ class Services extends Component {
     scrollToComponent(this.container_ref, {...scrollConfig, offset: -800});
   }
   openModalBox(service){
-    this.props.openModalBox(ServicesWindow, {service: service});
+    this.props.openModalBox(ServicesWindow, {service: service, closeModalBox: this.props.closeModalBox});
     //scrollToComponent(this.container_ref, scrollConfig)
   }
   componentDidMount(){

@@ -4,15 +4,30 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './App.scss';
 import Scroller from './Scroller';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import AboutUs from './components/AboutUs';
 import OurTeam from './components/OurTeam';
 import Services from './components/Services';
+import News from './components/News';
 import Contact from './components/Contact';
 import Resources from './components/Resources';
 //
 const aboutus_ref = React.createRef();
 const ourteam_ref = React.createRef();
 const services_ref = React.createRef();
+
+//
+const EM_VALUE = 16;
+const BREAKPOINTS = {
+  DESKTOP_XL: 80 * EM_VALUE,
+  DESKTOP_L: 64 * EM_VALUE,
+  DESKTOP_M: 60 * EM_VALUE,
+  TABLET_L: 50 * EM_VALUE,
+  TABLET_M: 45.5 * EM_VALUE,
+  TABLET_SM: 30 * EM_VALUE,
+  MOBILE_M: 25 * EM_VALUE,
+  MOBILE_SM: 20 * EM_VALUE
+}
 
 //
 class App extends Component {
@@ -23,7 +38,8 @@ class App extends Component {
       shouldOpenModalBox: false,
       modalBoxContent: null,
       modalBoxProps: null,
-      teamMember: null
+      teamMember: null,
+      breakpoint: null
     }
     this.onResize = this.onResize.bind(this);
     this.closeModalBox = this.closeModalBox.bind(this);
@@ -31,13 +47,27 @@ class App extends Component {
   }
   componentDidMount(){
     window.addEventListener('resize', this.onResize);
+    this.onResize()
   }
   componentWillUnmount(){
     window.removeEventListener('resize', this.onResize)
   }
   onResize(){
+    const windowWidth = window.innerWidth;
+
+    // find current breakpoint.
+    let breakpoint// = BREAKPOINTS.MOBILE_SM;
+    for (var prop in BREAKPOINTS) {
+      if(windowWidth >= BREAKPOINTS[prop]){
+        breakpoint = prop;
+        break;
+      }
+    }
+
+    // Update Component state
     this.setState({
-      mobileMode: window.innerWidth > 620
+      mobileMode: windowWidth < 620,
+      breakpoint: breakpoint
     })
   }
   openModalBox(component, props){
@@ -48,7 +78,7 @@ class App extends Component {
       modalBoxProps: props
     })
   }
-  closeModalBox(){
+  closeModalBox(e){
     this.setState({
       shouldOpenModalBox: false,
       modalBoxContent: null,
@@ -63,22 +93,35 @@ class App extends Component {
         <Scroller>
           <div className="App">
             <Header mobileMode={this.state.mobileMode} />
-            <AboutUs ref={aboutus_ref} mobileMode={this.state.mobileMode} />
-            <OurTeam 
-              ref={ourteam_ref} 
-              mobileMode={this.state.mobileMode} 
+
+            <div className="sections-wrapper">
+              <AboutUs 
+                ref={aboutus_ref} 
+                mobileMode={this.state.mobileMode}
+                breakpoint={this.state.breakpoint} />
+              <OurTeam 
+                ref={ourteam_ref} 
+                mobileMode={this.state.mobileMode} 
+                openModalBox={this.openModalBox}
+                closeModalBox={this.closeModalBox} />
+              <Services 
+                ref={services_ref} 
+                mobileMode={this.state.mobileMode}
+                openModalBox={this.openModalBox}
+                closeModalBox={this.closeModalBox} />
+              <News />
+              <Resources />
+              <Contact />
+            </div>
+
+            <Footer
               openModalBox={this.openModalBox}
-              closeModalBox={this.closeModalBox} />
-            <Services 
-              ref={services_ref} 
-              mobileMode={this.state.mobileMode}
-              openModalBox={this.openModalBox}
-              closeModalBox={this.closeModalBox} />
-            <Resources />
-            <Contact />
+              closeModalBox={this.closeModalBox}
+              mobileMode={this.state.mobileMode} />
 
             {(shouldOpenModalBox && ModalBoxContent) && (
-              <div onClick={this.closeModalBox} className={`modalbox ${shouldOpenModalBox ? 'modalbox--open' : ''}`}>
+              <div className={`modalbox ${shouldOpenModalBox ? 'modalbox--open' : ''}`}>
+                <div className="modalbox__overlay" onClick={this.closeModalBox} ></div>
                 {<ModalBoxContent {...modalBoxProps} />}
               </div>
             )}
