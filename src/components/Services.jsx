@@ -14,10 +14,12 @@ class Services extends Component {
     super(props);
     this.state = {
       services: [],
-      contentLoaded: false
+      contentLoaded: false,
+      tileHeight: ''
     }
     this.container_ref = React.createRef();
     this.closeWindow = this.closeWindow.bind(this);
+    this.onResize = this.onResize.bind(this);
   }
   closeWindow(){
     this.props.history.push("/services");
@@ -26,6 +28,22 @@ class Services extends Component {
   openModalBox(service){
     this.props.openModalBox(ServicesWindow, {service: service, closeModalBox: this.props.closeModalBox});
     //scrollToComponent(this.container_ref, scrollConfig)
+  }
+  onResize(){
+    if(!this.props.mobileMode && window.innerHeight > 520){
+    console.log('asdkasd asdlkasd asdlk')
+      const headerHeight = document.querySelector('.header-main').clientHeight;
+      const footerHeight = document.querySelector('.footer-main').clientHeight;
+      const availableHeight = (window.innerHeight-(headerHeight+footerHeight));
+      const tileHeight = `${availableHeight/2}px`;
+      this.setState({
+        tileHeight
+      })
+    } else {
+      this.setState({
+        tileHeight: ''
+      })
+    }
   }
   componentDidMount(){
     // Load Services List
@@ -36,9 +54,18 @@ class Services extends Component {
         contentLoaded: true
       })
     });
+
+    // Set Services Tile dimmensions
+    setTimeout(this.onResize, 2000);
+
+    // Add events listeners
+    window.addEventListener('resize', this.onResize);
+  }
+  componentWillUnmount(){
+    window.removeEventListener('resize', this.onResize);
   }
   render() {
-    const { services, contentLoaded } = this.state;
+    const { services, contentLoaded, tileHeight } = this.state;
     const {isOpen} = this.props;
     const path = this.props.location.pathname.split('/').pop() || '';
 
@@ -50,7 +77,8 @@ class Services extends Component {
         <nav className="our-services__navigation">
           <ul className="our-services__menu">
             {services.map( service => (
-              <li className={`section ${service.slug}`}  key={service.id}>
+              <li style={tileHeight !== '' ? {height: tileHeight} : {}} className={`section ${service.slug}`}  key={service.id}>
+                <div className="our-services__wrapper"></div>
                 <Link 
                     to={`/services/${service.slug}`} 
                     className="section__link" 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {withRouter} from 'react-router';
 import scrollToComponent from 'react-scroll-to-component';
 
-const scrollConfig = { offset: -100, align: 'top', duration: 1000 };
+const scrollConfig = { offset: -80, align: 'top', duration: 1000 };
 class Scroller extends React.Component {
   componentWillReceiveProps(nextProps){
     if(this.props.location !== nextProps.location){

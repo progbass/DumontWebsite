@@ -68,16 +68,16 @@ class Contact extends Component {
             <div className="contact-units">
               <div className="contact-units__unit">
                 <h3 className="title">Address</h3>
-                <p className="detail">Av. Insurgentes Sur 1898, <br/>
-                Florida, 01030 <br/>
-                Ciudad de México, CDMX</p>
+                <p className="detail">Av. Insurgentes Sur 1898, piso 21<br/>
+                Colonia Florida, 01030 <br/>
+                Ciudad de México, México</p>
               </div>
               <div className="contact-units__unit">
                 <h3 className="title">Contact Information</h3>
                 <p className="detail">
-                TEL. <a href="mailto:dumont@hotmail.com">+52 (55) 5322 6230</a><br/>
-                Fax. <a href="mailto:dumont@hotmail.com">+52 (55) 5661 3056</a><br/>
-                E-mail. <a href="mailto:dumont@hotmail.com">dumont@hotmail.com</a> </p>
+                TEL. <a href="mailto:mail@dumont.com.mx">+52 (55) 5322 6230</a><br/>
+                Fax. <a href="mailto:mail@dumont.com.mx">+52 (55) 5661 3056</a><br/>
+                E-mail. <a href="mailto:mail@dumont.com.mx">mail@dumont.com.mx</a> </p>
               </div>
             </div>
           </div>

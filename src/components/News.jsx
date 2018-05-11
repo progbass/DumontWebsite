@@ -14,8 +14,10 @@ class News extends Component {
     this.state = {
       posts: [],
       news: [],
+      certifications: [],
       contentLoaded: false,
-      newsLoaded: false
+      newsLoaded: false,
+      certificationsLoaded: false
     }
     this.openModalBox = this.openModalBox.bind(this);
     this.closeModalBox = this.closeModalBox.bind(this);
@@ -55,6 +57,15 @@ class News extends Component {
       })
     })
 
+    // Load Awards
+    axios.get(`${config.api_baseURL}/certifications?per_page=100`)
+    .then(response => {
+      this.setState({
+        certifications: response.data,
+        certificationsLoaded: true
+      })
+    })
+
     // Load Articles
     axios.get(`${config.api_baseURL}/articles?per_page=100`)
     .then(response => {
@@ -76,31 +87,31 @@ class News extends Component {
   render() {
     const {isOpen} = this.props;
     const { 
-      content:newsContent, 
+      content:newsContent={}, 
       news:newsList=[], 
       articles:articlesList=[], 
       associations:associationsList=[],
-      awards:awardsList=[]
+      awards:awardsList=[],
+      certifications:certificationsList=[]
     } = this.state;
 
-    // Parse Content
-    if(!newsContent) return null;
 
     // Render Component
     return (
       <section className="section news">
+        <div className={`section--spacing accordion-trigger ${ isOpen ? 'accordion-trigger--open' : ''}`} >
+          <h2 className="title-main">News</h2>
+        </div>
+
+        <div className={`accordion-collapsable ${ isOpen ? 'accordion-collapsable--open' : ''}`}>
           <div className=" section--spacing heroe-banner">
             <div className="section__module background-container">
-              <div className={`heroe-banner__title accordion-trigger ${ isOpen ? 'accordion-trigger--open' : ''}`} >
+              <div className={`heroe-banner__title`} >
                 <h2 className="title-main">News</h2>
               </div>
               {'content' in newsContent && (
                 <div 
-                  className={`
-                    heroe-banner__content 
-                    accordion-collapsable 
-                    ${ isOpen ? 'accordion-collapsable--open' : ''}
-                  `}
+                  className={`heroe-banner__content`}
                   dangerouslySetInnerHTML={{__html:newsContent.content.rendered}}
                 />
               )}
@@ -144,30 +155,55 @@ class News extends Component {
             </div>
           )}
 
+          <div className="container--half section__module  section--spacing">
+            {awardsList.length > 0 && (
+              <div className="awards ">
+                <h2 className="title-main">Awards</h2>
+                <ul className="awards__list ">
+                  {awardsList.map(award => (
+                    <li className={`award`} key={award.id} >
+                      <a 
+                        className="award-link" 
+                        href={`${award.link}`}  
+                        target="_blank"
+                      >
+                        {award.acf.logo && (
+                          <img 
+                            src={award.acf.logo} 
+                            className="award-image image--responsive" 
+                            alt={award.title.rendered} />
+                        )}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
-          {awardsList.length > 0 && (
-            <div className="section__module awards section--spacing">
-              <h2 className="title-main">Awards</h2>
-              <ul className="awards__list ">
-                {awardsList.map(award => (
-                  <li className={`award`} key={award.id} >
-                    <a 
-                      className="award-link" 
-                      href={`${award.link}`}  
-                      target="_blank"
-                    >
-                      {award.acf.logo && (
-                        <img 
-                          src={award.acf.logo} 
-                          className="award-image image--responsive" 
-                          alt={award.title.rendered} />
-                      )}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+            {certificationsList.length > 0 && (
+              <div className="certifications">
+                <h2 className="title-main">Certifications</h2>
+                <ul className="certifications__list ">
+                  {certificationsList.map(certification => (
+                    <li className={`certification`} key={certification.id} >
+                      <a 
+                        className="certification-link" 
+                        href={`${certification.certification_link}`}  
+                        target="_blank"
+                      >
+                        {certification.acf.certification_logo && (
+                          <img 
+                            src={certification.acf.certification_logo} 
+                            className="certification-image image--responsive" 
+                            alt={certification.title.rendered} />
+                        )}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
 
 
           {articlesList.length > 0 && (
@@ -207,7 +243,8 @@ class News extends Component {
               </ul>
             </div>
           )}
-        </section>
+        </div>
+      </section>
     );
   }
 }

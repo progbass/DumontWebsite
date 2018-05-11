@@ -152,10 +152,10 @@ class AboutUs extends Component {
     })
   }
   addListeners(){
-    document.querySelector('.information').addEventListener('click', this.toggleInformationModule);
+    //document.querySelector('.information').addEventListener('click', this.toggleInformationModule);
   }
   removeListeners(){
-    document.querySelector('.information').removeEventListener('click', this.toggleInformationModule);
+    //document.querySelector('.information').removeEventListener('click', this.toggleInformationModule);
   }
   toggleInformationModule(flag){
     const parsedFlag = typeof(flag) === 'object' ? null : flag;
@@ -192,38 +192,40 @@ class AboutUs extends Component {
           <h2 className="title">Your Ideas.<br/>Our Business.</h2>
         </div>
 
-        {'content' in biography && (
-          <div className={`section__module section--spacing information ${!isDescriptionOpen ? 'information--closed' : ''}`}>
-            <div 
-              className="information__content" 
-              dangerouslySetInnerHTML={{__html:biography.content.rendered}}
-            />
-            <div className="information__flag">
-              <img className="image--responsive" src={require('../img/aboutus-flag.jpg')} alt="Bandera Mexicana" />
-            </div>
-          </div>
-        )}
+        <div className={`section--spacing accordion-trigger ${ isOpen ? 'accordion-trigger--open' : ''}`} >
+          <h2 className="title-main">About Us</h2>
+        </div>
 
-        {'content' in aboutUs && (
-          <div className="section--dark section--spacing biography">
-            <div className="section__module ">
-              <div className={`biography__title accordion-trigger ${ isOpen ? 'accordion-trigger--open' : ''}`} >
-                <h2 
-                  className="title-main" 
-                  dangerouslySetInnerHTML={{__html:aboutUs.title.rendered}}
+        <div className={`accordion-collapsable ${ isOpen ? 'accordion-collapsable--open' : ''}`}>
+          {'content' in biography && (
+            <div className={`section__module section--spacing information`}>
+              <div 
+                className="information__content" 
+                dangerouslySetInnerHTML={{__html:biography.content.rendered}}
+              />
+              <div className="information__flag">
+                <img className="image--responsive" src={require('../img/aboutus-flag.jpg')} alt="Bandera Mexicana" />
+              </div>
+            </div>
+          )}
+
+          {'content' in aboutUs && (
+            <div className="section--dark section--spacing biography">
+              <div className="section__module ">
+                <div className={`biography__title`}>
+                  <h2 
+                    className="title-main" 
+                    dangerouslySetInnerHTML={{__html:aboutUs.title.rendered}}
+                  />
+                </div>
+                <div 
+                  className={`biography__content`} 
+                  dangerouslySetInnerHTML={{__html:aboutUs.content.rendered}}
                 />
               </div>
-              <div 
-                className={`
-                  biography__content 
-                  accordion-collapsable 
-                  ${ isOpen ? 'accordion-collapsable--open' : ''}
-                `} 
-                dangerouslySetInnerHTML={{__html:aboutUs.content.rendered}}
-              />
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </section>
     );
   }

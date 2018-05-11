@@ -28,7 +28,7 @@ class ProfileWindow extends Component {
           <div className="profile__head"> 
             <h2 className="name">{teamMember.title.rendered}</h2>
             <h3 className="role">{teamMember.acf.role}</h3>
-            <span className="email">{teamMember.acf.email}</span>
+            <span className="email"><a href={`mailto:${teamMember.acf.email}`}>{teamMember.acf.email}</a></span>
           </div>
 
           <div className="profile__meta">

@@ -3,15 +3,27 @@
 // OUR TEAM
 ////////////////////////////////
 .our-team{
+  // ACCORDION TRIGGER
+  .accordion-trigger{
+    color: white;
+    background-color: #525252;
+    .title-main{
+      margin: 0;
+    }
+  }
+
   /////////////////////
   // HEROE BANNER
   /////////////////////
   .heroe-banner{
     background: #525252;
     color: white;
-
+    
+    // SECTION TITLE
     .title-main{
       margin: 0;
+      display: none;
+
     }
 
     //////////////////////////////////
@@ -22,6 +34,7 @@
       background-size: contain;
       padding-bottom: 12em;
       .title-main{
+        display: block;
         margin-bottom: 1em;
         line-height: 1em;
       }
@@ -42,7 +55,7 @@
     }
     @media screen and (min-width: $bp-desktop-l){
       padding-bottom: 15em;
-      background-size: 1280px;
+      //background-size: 1280px;
     }
   }
   

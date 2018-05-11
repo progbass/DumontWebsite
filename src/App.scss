@@ -89,13 +89,13 @@ a{
 
   &:before{
     content: '';
-    display: block;
+    display: none;
     position: relative;
     height: $margin-base*2;
   }
 
   &--open{
-    max-height: 1000px;
+    max-height: 6000px;
     transition: max-height 600ms ease;
   }
 
@@ -119,16 +119,15 @@ a{
   //////////////////////////////////
   @media screen and (min-width: $bp-tablet-m){
     background: none;
+    display: none;
   }
 }
 
-////////////////////////////
-// CV & PROFILE MODALBOX
-////////////////////////////
+
 .modalbox{
   display: none;
   position: fixed;
-  cursor: url($images_path+'icon-close.svg');
+  cursor: url($images_path+'icon-close.svg') 30 30, auto;
   //padding: $margin-base;
   top: 0; left: 0;
   z-index: 99999;
@@ -150,6 +149,10 @@ a{
     background: rgba(#000, 0.5);
   }
 }
+
+////////////////////////////
+// CV & PROFILE MODALBOX
+////////////////////////////
 .profile{
   position: relative;
   background: white;
@@ -157,7 +160,10 @@ a{
   padding: $margin-base*2;
   margin: auto;
   overflow: auto;
-  height: 100%;
+  height: 90%;
+  top: 50%;
+  cursor: default;
+  transform: translateY(-50%);
 
   // META INFORMATION
   &__meta{
@@ -167,6 +173,7 @@ a{
     .icon{
       position: relative;
       display: block;
+      cursor: pointer;
       @include responsive-container(100%);
       @include hide-text();
       background-size: contain;
@@ -505,7 +512,9 @@ a{
   }
 }
 
-
+/*=======================================
+            SECTIONS STYLES
+=======================================*/
 @import './styles/header';
 @import './styles/footer';
 .sections-wrapper{
@@ -516,6 +525,3 @@ a{
   @import './styles/resources';
   @import './styles/contact';
 }
-
-
-

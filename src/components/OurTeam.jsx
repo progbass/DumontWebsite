@@ -54,18 +54,19 @@ class OurTeam extends Component {
     // Render Component
     return (
       <section className="section our-team">
-          <div className=" section--spacing heroe-banner">
+        <div className={`section--spacing accordion-trigger ${ isOpen ? 'accordion-trigger--open' : ''}`} >
+          <h2 className="title-main">Our Team</h2>
+        </div>
+
+        <div className={`accordion-collapsable ${ isOpen ? 'accordion-collapsable--open' : ''}`}>
+          <div className="section--spacing heroe-banner">
             <div className="section__module background-container">
-              <div className={`heroe-banner__title accordion-trigger ${ isOpen ? 'accordion-trigger--open' : ''}`} >
+              <div className={`heroe-banner__title`} >
                 <h2 className="title-main">Our Team</h2>
               </div>
               {'content' in ourTeam && (
                 <div 
-                  className={`
-                    heroe-banner__content 
-                    accordion-collapsable 
-                    ${ isOpen ? 'accordion-collapsable--open' : ''}
-                  `}
+                  className={`heroe-banner__content`}
                   dangerouslySetInnerHTML={{__html:ourTeam.content.rendered}}
                 />
               )}
@@ -103,7 +104,8 @@ class OurTeam extends Component {
               </ul>
             </div>
           )}
-        </section>
+        </div>
+      </section>
     );
   }
 }

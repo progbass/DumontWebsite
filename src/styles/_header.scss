@@ -88,9 +88,11 @@
   // SCROLL INDICATOR
   ////////////////////////////////
   &__scroller{
-    position: relative;
-    margin: 0 #{-$margin-base} #{-$margin-base};
+    position: absolute;
+    bottom: 0; left: $margin-base;
+    margin: 0 #{-$margin-base} 0;
     height: 4px;
+    width: calc(100% + #{$margin-base*2});
     background: $color;
 
     &:before{
@@ -148,21 +150,22 @@
   @media screen and (min-width: $bp-tablet-m){
     .fixer{
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       flex-flow: row wrap;
+      align-items: center;
     }
 
     .logo{
-      
+      margin-right: 1em;
       &__link{
         margin-bottom: 0;
       }
     }
 
     &__tools{
-      top: 50%; right: $margin-base;
-      transform: translateY(-50%);
-      position: absolute;
+      // top: 50%; right: $margin-base;
+      // transform: translateY(-50%);
+      // position: absolute;
     }
     .menu{
       display: block;
@@ -170,14 +173,12 @@
       &__item{
         display: inline-block;
         margin-left: 1.5em;
+        margin-bottom: 0;
       }
     }
 
     &__scroller{
-      position: absolute;
-      bottom: 0;
-      margin-bottom: 0;
-      width: calc(100% + #{$margin-base*2});
+      
     }
   }
   @media screen and (min-width: $bp-desktop-m){

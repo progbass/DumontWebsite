@@ -100,7 +100,7 @@ class Footer extends Component {
           <div className="news-wrapper">
             <ul className="news">
               {posts.map( post => (
-                <li className="news__post">
+                <li className="news__post" key={post.id}>
                   <a href="#" onClick={e => {
                     e.preventDefault();
                     this.openModalBox(post)

@@ -15,6 +15,7 @@ import Resources from './components/Resources';
 const aboutus_ref = React.createRef();
 const ourteam_ref = React.createRef();
 const services_ref = React.createRef();
+const news_ref = React.createRef();
 
 //
 const EM_VALUE = 16;
@@ -44,6 +45,7 @@ class App extends Component {
     this.onResize = this.onResize.bind(this);
     this.closeModalBox = this.closeModalBox.bind(this);
     this.openModalBox = this.openModalBox.bind(this);
+    this.fixedScrollPosition = 0;
   }
   componentDidMount(){
     window.addEventListener('resize', this.onResize);
@@ -71,6 +73,12 @@ class App extends Component {
     })
   }
   openModalBox(component, props){
+    // Get Scroll Position
+    this.fixedScrollPosition = document.documentElement.scrollTop;
+    document.querySelector('.App > .sections-wrapper').style.position = 'fixed';
+    document.querySelector('.App > .sections-wrapper').style.top = `-${this.fixedScrollPosition}px`;
+
+
     //const shouldOpenWindow = flag ? flag : this.state.shouldOpenModalBox;
     this.setState({
       shouldOpenModalBox: true,
@@ -79,6 +87,11 @@ class App extends Component {
     })
   }
   closeModalBox(e){
+    document.querySelector('.App > .sections-wrapper').style.position = 'relative';
+    document.querySelector('.App > .sections-wrapper').style.top = `auto`;
+    window.scrollTo(0, this.fixedScrollPosition);
+
+    // Update App State
     this.setState({
       shouldOpenModalBox: false,
       modalBoxContent: null,
@@ -109,7 +122,9 @@ class App extends Component {
                 mobileMode={this.state.mobileMode}
                 openModalBox={this.openModalBox}
                 closeModalBox={this.closeModalBox} />
-              <News />
+              <News
+                ref={news_ref}
+                mobileMode={this.state.mobileMode} />
               <Resources />
               <Contact />
             </div>

@@ -3,6 +3,14 @@
 // OUR TEAM
 ////////////////////////////////
 .news{
+  // ACCORDIONS TRIGGER
+  .accordion-trigger{
+    color: $color3;
+    .title-main{
+      margin: 0;
+    }
+  }
+
   /////////////////////
   // HEROE BANNER
   /////////////////////
@@ -10,6 +18,7 @@
 
     .title-main{
       margin: 0;
+      display: none;
     }
 
     //////////////////////////////////
@@ -17,6 +26,7 @@
     //////////////////////////////////
     @media screen and (min-width: $bp-tablet-m){
       .title-main{
+        display: block;
         margin-bottom: 1em;
         line-height: 1em;
       }
@@ -49,6 +59,11 @@
       flex-flow: row wrap;
       justify-content: space-between;
       background: white;
+
+      .slide{
+        max-width: 20em !important;
+        min-width: 0 !important;
+      }
       
       // SINGLE POST
       .news{
@@ -145,6 +160,26 @@
     }
   }
 
+  /////////////////
+  // CERTIFICATIONS LIST
+  .certifications{
+    position: relative;
+    
+    // SINGLE MEMBER
+    &__list{
+      display: flex;
+      flex-flow: row wrap;
+      position: relative;
+
+      // Awad Image
+      .certification{
+        display: inline-block;
+        width: 8em;
+        margin: 0 1em 1em;
+      }
+    }
+  }
+
 
   /////////////////
   // Articles
@@ -161,9 +196,45 @@
     }
   }
 
+  //////////////////////////////////
+  // HALF CONTAINER
+  //////////////////////////////////
+  .container--half{
+    @media screen and (min-width: $bp-tablet-m){
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: flex-start;
+      .articles,
+      .certifications{
+        width: 50%
+      }
+    }
+  }
+
   //////////////////////
   // ASSOCIATIONS LIST
   .associations{
+    position: relative;
+    
+    // SINGLE MEMBER
+    &__list{
+      display: flex;
+      flex-flow: row wrap;
+      position: relative;
+
+      // Awad Image
+      .association{
+        display: inline-block;
+        width: 5em;
+        margin: 0 1em 1em;
+      }
+    }
+  }
+
+
+  ///////////////////////
+  // CERTIFICATIONS LIST
+  .certifications{
     position: relative;
     
     // SINGLE MEMBER
