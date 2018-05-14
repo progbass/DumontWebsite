@@ -85,7 +85,7 @@ class Header extends Component {
       <header className="header-main">
         <div className="fixer">
           <div className="logo">
-            <Link to="/about-us" className="logo__link">
+            <Link to="/home" className="logo__link">
               <img src={require('../img/logo-header.svg')} className="logo__image image--responsive" alt="Dumont Logo" />
             </Link>
           </div>

@@ -23,14 +23,15 @@ class ServicesWindow extends Component {
 
     // Render Component
     return (
-      <div onClick={this.props.closeModalBox} className={`our-services-modalbox ${service.slug}`}>
+      <div onClick={this.props.closeModalBox} className="our-services-modalbox" >
+        <div className={`section__overlay  ${service.slug}`}></div>
         <ul className="section__module our-services-list" ref={(section) => { this.container_ref = section; }}>
-          <Route path="/services/patents" component={()=><Patents onClick={this.closeWindow} />} />
-          <Route path="/services/trademarks" component={()=><Trademarks onClick={this.closeWindow} />} />
-          <Route path="/services/litigation" component={()=><Litigation onClick={this.closeWindow} />} />
-          <Route path="/services/copyright" component={()=><Copyright onClick={this.closeWindow} />} />
-          <Route path="/services/enforcement" component={()=><Enforcement onClick={this.closeWindow} />} />
-          <Route path="/services/personal-data-protection" component={()=><PersonalData onClick={this.closeWindow} />} />
+          <Route path="/services/patents" component={()=><Patents service={service} onClick={this.closeWindow} />} />
+          <Route path="/services/trademarks" component={()=><Trademarks service={service} onClick={this.closeWindow} />} />
+          <Route path="/services/litigation" component={()=><Litigation service={service} onClick={this.closeWindow} />} />
+          <Route path="/services/copyright" component={()=><Copyright service={service} onClick={this.closeWindow} />} />
+          <Route path="/services/enforcement" component={()=><Enforcement service={service} onClick={this.closeWindow} />} />
+          <Route path="/services/personal-data-protection" component={()=><PersonalData service={service} onClick={this.closeWindow} />} />
         </ul>
       </div>
     );

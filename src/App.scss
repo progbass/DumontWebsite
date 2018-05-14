@@ -107,7 +107,7 @@ a{
   }
 }
 .accordion-trigger{
-  background: url($images_path+'icon-arrow.svg') no-repeat right center;
+  background: url($images_path+'icon-arrow.svg') no-repeat calc(100% - 1em) center;
   background-size: 25px;
 
   &--open{
@@ -147,6 +147,12 @@ a{
     width: 100%;
     height: 100%;
     background: rgba(#000, 0.5);
+
+    &--purple{
+      display: none;
+      background: rgba($color, 0.5);
+      opacity: 0.5;
+    }
   }
 }
 
@@ -312,25 +318,40 @@ a{
 /////////////////
 // SERVICES LIST
 .our-services-modalbox{
-  background-color: $color3;
+  overflow: scroll;
   width: 100%; height: 100%;
 
-  /////////////////////////////////////////////////
-  // MEDIA QUERIES
-  /////////////////////////////////////////////////
-  @media screen and (min-width: $bp-tablet-m){
-    $services-background: (
-      patents: $images_path+'services/patents-bg.jpg',
-      trademarks: $images_path+'services/trademarks-bg.jpg',
-      litigation: $images_path+'services/litigation-bg.jpg',
-      enforcement: $images_path+'services/enforcement-bg.jpg',
-      copyright: $images_path+'services/copyright-bg.jpg',
-      personal-data-protection: $images_path+'services/data-protection-bg.jpg'
-    );
-    @each $name, $icon in $services-background {
-      &.#{$name}{
-        background: url($icon) no-repeat center;
-        background-size: cover;
+  .section__overlay{
+    position: absolute;
+    top: 0; left: 0;
+    opacity: 0.9;
+    width: 100%; height: 100%;
+    background: $color no-repeat center;
+    mix-blend-mode: overlay;
+ 
+    /////////////////////////////////////////////////
+    // MEDIA QUERIES
+    /////////////////////////////////////////////////
+    @media screen and (min-width: $bp-tablet-m){
+      $services-background: (
+        patents: $images_path+'services/patents-bg.jpg',
+        trademarks: $images_path+'services/trademarks-bg.jpg',
+        litigation: $images_path+'services/litigation-bg.jpg',
+        enforcement: $images_path+'services/enforcement-bg.jpg',
+        copyright: $images_path+'services/copyright-bg.jpg',
+        personal-data-protection: $images_path+'services/data-protection-bg.jpg'
+      );
+      @each $name, $icon in $services-background {
+        &.#{$name}{
+          &:before{
+            content: '';
+            position: absolute;
+            display: block;
+            width: 100%; height: 100%;
+            background: url($icon) no-repeat center;
+            background-size: cover;
+          }
+        }
       }
     }
   }
@@ -391,35 +412,39 @@ a{
     .service{
       display: flex;
       flex-flow: row nowrap;
+      .service__content {width: 55%};
+
       &.patents .service__content{
-        width: 60%;
+        //width: 60%;
       }
-      &.trademarks .service__content{
-        width: 65%;
-        margin: auto;
-        text-align: center;
+      &.trademarks{
+        justify-content: center;
+        // width: 65%;
+        // 
+        // text-align: center;
       }
       &.litigation{
+        // .service__content{
+        //   width: 60%;
+        //   text-align: right;
+        // }
+      }
+      &.copyright{
         justify-content: flex-end;
-        .service__content{
-          width: 60%;
-          text-align: right;
-        }
+        // width: 65%;
+        // margin: auto;
+        // text-align: center;
       }
-      &.copyright .service__content{
-        width: 65%;
-        margin: auto;
-        text-align: center;
-      }
-      &.enforcement .service__content{
-        width: 60%;
+      &.enforcement {
+        justify-content: center;
+        //width: 60%;
       }
       &.personal-data-protection{
         justify-content: flex-end;
-        .service__content{
-          width: 60%;
-          text-align: right;
-        }
+        // .service__content{
+        //   width: 60%;
+        //   text-align: right;
+        // }
       }
     }
   }
@@ -490,7 +515,10 @@ a{
   padding: $margin-base*2;
   margin: auto;
   overflow: auto;
-  height: 100%;
+  height: 90%;
+  top: 50%;
+  cursor: default;
+  transform: translateY(-50%);
   
   // CONTENT
   &__content{
@@ -518,6 +546,7 @@ a{
 @import './styles/header';
 @import './styles/footer';
 .sections-wrapper{
+  @import './styles/main-banner';
   @import './styles/about-us';
   @import './styles/our-team';
   @import './styles/our-services';

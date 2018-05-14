@@ -6,6 +6,14 @@
   // ACCORDIONS TRIGGER
   .accordion-trigger{
     color: $color3;
+    background-image: url($images_path+'icon-arrow--black.svg');
+
+    // Accordion Icon
+    &--open{
+      background-image: url($images_path+'icon-arrow--blackClose.svg');
+    }
+
+    // Title
     .title-main{
       margin: 0;
     }
@@ -15,7 +23,7 @@
   // HEROE BANNER
   /////////////////////
   .heroe-banner{
-
+    // TITLE
     .title-main{
       margin: 0;
       display: none;
@@ -204,9 +212,12 @@
       display: flex;
       flex-flow: row nowrap;
       align-items: flex-start;
-      .articles,
+      .awards,
       .certifications{
         width: 50%
+      }
+      .awards{
+        padding-right: $margin-base*2
       }
     }
   }

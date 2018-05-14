@@ -8,7 +8,7 @@ class Resources extends Component {
   constructor(props){
     super(props);
     this.state = {
-      content: [],
+      content: {},
       contentLoaded: false,
     }
   }
@@ -24,13 +24,14 @@ class Resources extends Component {
   }
   render() {
     const {isOpen} = this.props;
-    const { content:resources, members} = this.state;
+    const { content:resources={}, members} = this.state;
+    if(!resources.hasOwnProperty('content')) return null;
 
-    if(!resources) return null;
-    
     // Render Component
     return (
-      <section className="section section--spacing resources">
+      <section
+        style={{backgroundImage: `url(${resources.acf.background})`}}
+        className="section section--spacing resources">
         <div className="section__module">
           
           <div className="resources__content">

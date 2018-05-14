@@ -121,7 +121,7 @@ class Footer extends Component {
               e.preventDefault();
               this.openLegalModalBox(legals)
             }} >
-            Aviso de Confidencialidad
+            Privacy Notice
           </Link>
         )}
       </footer>

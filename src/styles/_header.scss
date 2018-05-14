@@ -150,7 +150,7 @@
   @media screen and (min-width: $bp-tablet-m){
     .fixer{
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       flex-flow: row wrap;
       align-items: center;
     }

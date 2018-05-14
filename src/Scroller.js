@@ -7,7 +7,9 @@ class Scroller extends React.Component {
   componentWillReceiveProps(nextProps){
     if(this.props.location !== nextProps.location){
       const target = nextProps.location.pathname.split('/').pop();
-      if(target === 'about-us'
+      if(
+        target === 'home'
+        || target === 'about-us'
         || target === 'our-team'
         || target === 'our-services'
         || target === 'news'

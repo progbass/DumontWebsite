@@ -50,7 +50,7 @@ class OurTeam extends Component {
 
     // Parse Posts
     const ourTeam = posts.find(post => post.slug === 'our-team') || {};
-
+    
     // Render Component
     return (
       <section className="section our-team">
@@ -59,19 +59,23 @@ class OurTeam extends Component {
         </div>
 
         <div className={`accordion-collapsable ${ isOpen ? 'accordion-collapsable--open' : ''}`}>
-          <div className="section--spacing heroe-banner">
-            <div className="section__module background-container">
-              <div className={`heroe-banner__title`} >
-                <h2 className="title-main">Our Team</h2>
+          {'content' in ourTeam > 0 && (
+            <div
+              style={{backgroundImage: `url(${ourTeam.acf.background.url})`}}
+              className="section--spacing heroe-banner">
+              <div className="section__module background-container">
+                <div className={`heroe-banner__title`} >
+                  <h2 className="title-main">Our Team</h2>
+                </div>
+                {'content' in ourTeam && (
+                  <div 
+                    className={`heroe-banner__content`}
+                    dangerouslySetInnerHTML={{__html:ourTeam.content.rendered}}
+                  />
+                )}
               </div>
-              {'content' in ourTeam && (
-                <div 
-                  className={`heroe-banner__content`}
-                  dangerouslySetInnerHTML={{__html:ourTeam.content.rendered}}
-                />
-              )}
             </div>
-          </div>
+          )}
 
           {members.length > 0 && (
             <div className="section__module team">

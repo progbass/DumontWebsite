@@ -5,6 +5,7 @@ import './App.scss';
 import Scroller from './Scroller';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import MainBanner from './components/MainBanner';
 import AboutUs from './components/AboutUs';
 import OurTeam from './components/OurTeam';
 import Services from './components/Services';
@@ -68,7 +69,7 @@ class App extends Component {
 
     // Update Component state
     this.setState({
-      mobileMode: windowWidth < 620,
+      mobileMode: windowWidth < BREAKPOINTS.TABLET_M,
       breakpoint: breakpoint
     })
   }
@@ -99,7 +100,8 @@ class App extends Component {
     })
   }
   render() {
-    const { shouldOpenModalBox, modalBoxContent:ModalBoxContent, modalBoxProps } = this.state;
+    const { shouldOpenModalBox, modalBoxProps={}, modalBoxContent:ModalBoxContent } = this.state;
+    const customOverlayClass = modalBoxProps && 'customOverlayClass' in modalBoxProps ? modalBoxProps.customOverlayClass : '';
 
     return (
       <Router>
@@ -108,10 +110,12 @@ class App extends Component {
             <Header mobileMode={this.state.mobileMode} />
 
             <div className="sections-wrapper">
-              <AboutUs 
-                ref={aboutus_ref} 
+              <MainBanner
                 mobileMode={this.state.mobileMode}
                 breakpoint={this.state.breakpoint} />
+              <AboutUs 
+                ref={aboutus_ref} 
+                mobileMode={this.state.mobileMode} />
               <OurTeam 
                 ref={ourteam_ref} 
                 mobileMode={this.state.mobileMode} 
@@ -136,7 +140,7 @@ class App extends Component {
 
             {(shouldOpenModalBox && ModalBoxContent) && (
               <div className={`modalbox ${shouldOpenModalBox ? 'modalbox--open' : ''}`}>
-                <div className="modalbox__overlay" onClick={this.closeModalBox} ></div>
+                <div className={`modalbox__overlay ${customOverlayClass}`} onClick={this.closeModalBox} ></div>
                 {<ModalBoxContent {...modalBoxProps} />}
               </div>
             )}

@@ -27,7 +27,7 @@ function withAccordion(WrappedComponent, selectData) {
     componentWillReceiveProps(nextProps){
       if(this.props.mobileMode !== nextProps.mobileMode){
         this.removeListeners();
-        if(this.props.mobileMode){
+        if(nextProps.mobileMode){
           this.addListeners();
         }
       }
