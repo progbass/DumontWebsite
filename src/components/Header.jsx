@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import scrollToComponent from 'react-scroll-to-component';
+import config from '../config';
 
 const getElemDistance = function ( elem ) {
     var location = 0;
@@ -86,7 +87,7 @@ class Header extends Component {
         <div className="fixer">
           <div className="logo">
             <Link to="/home" className="logo__link">
-              <img src={require('../img/logo-header.svg')} className="logo__image image--responsive" alt="Dumont Logo" />
+              <img src={`${config.theme_url}/media/logo-header.svg`} className="logo__image image--responsive" alt="Dumont Logo" />
             </Link>
           </div>
           
