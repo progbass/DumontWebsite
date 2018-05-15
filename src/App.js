@@ -128,7 +128,9 @@ class App extends Component {
                 closeModalBox={this.closeModalBox} />
               <News
                 ref={news_ref}
-                mobileMode={this.state.mobileMode} />
+                mobileMode={this.state.mobileMode}
+                openModalBox={this.openModalBox}
+                closeModalBox={this.closeModalBox} />
               <Resources />
               <Contact />
             </div>

@@ -42,6 +42,16 @@
       margin-bottom: 0.75em;
     }
 
+    .pdf-icon{
+      width: 1.12em;
+      top: 0.32em;
+      left: 0.875em;
+      display: inline-block;
+      background: url($images_path+'icon-pdf.svg') no-repeat center;
+      background-size: contain;
+      @include responsive-container(130.674%);
+    }
+
     @media screen and (min-width: $bp-desktop-m){
       display: flex;
       flex-flow: row nowrap;

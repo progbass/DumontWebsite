@@ -1,6 +1,6 @@
 .footer-main {
-  $footer-height: 50px;
-  //height: $footer-height;
+  $footer-height: 35px;
+  
   width: 100%;
   color: $color4;
   display: flex;
@@ -8,6 +8,7 @@
   flex-flow: column;
   padding: 0 $margin-base;
   background: white url($images_path+'footer-bg.svg') no-repeat center right;
+  text-align: center;
 
   &--fixed{
     height: $footer-height;
@@ -38,12 +39,20 @@
       color: $color;
     }
   }
+
+  ////////////////////////////////
+  // COPYRIGHT
+  ////////////////////////////////
+  .copyright{
+    @include type-setting(-1)
+  }
   
   ////////////////////////////////
   // NEWS
   ////////////////////////////////
   .news-wrapper{
     visibility: hidden;
+    display: none;
     width: 100%;
     height: 1.5em;
   }
@@ -82,7 +91,7 @@
   // <MEDIA QUERIES
   //////////////////////////////////
   @media screen and (min-width: $bp-tablet-m){
-    
+    height: $footer-height;
   }
   @media screen and (min-width: $bp-desktop-m){
     

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import withAccordion from '../withAccordion';
 
 class Contact extends Component {
@@ -84,7 +85,9 @@ class Contact extends Component {
         </div>
 
         <div className="section__module logo">
-          <img src={require('../img/logo-footer.svg')} className="image--responsive" alt="Dumont Logo" />
+          <Link to="/home" >
+            <img src={require('../img/logo-footer.svg')} className="image--responsive" alt="Dumont Logo" />
+          </Link>
         </div>
       </section>
     );

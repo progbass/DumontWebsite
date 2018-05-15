@@ -6,7 +6,7 @@ import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 import config from '../config';
 import withAccordion from '../withAccordion';
-import ProfileWindow from './modalbox/ProfileWindow';
+import NewsWindow from './modalbox/NewsWindow';
 
 class News extends Component {
   constructor(props){
@@ -22,8 +22,9 @@ class News extends Component {
     this.openModalBox = this.openModalBox.bind(this);
     this.closeModalBox = this.closeModalBox.bind(this);
   }
-  openModalBox(member){
-    this.props.openModalBox(ProfileWindow, {teamMember:member} );
+  openModalBox(post){
+    console.log(post)
+    this.props.openModalBox(NewsWindow, {post:post} );
   }
   closeModalBox(e){
     e.preventDefault();
@@ -134,8 +135,8 @@ class News extends Component {
                         className="cover-link" 
                         to={`/our-team/${news.slug}/`}  
                         onClick={e => {
+                          e.preventDefault();
                           this.openModalBox(news);
-                          return false;
                         }
                       }>
                         {news.better_featured_image.media_details.sizes.medium && (

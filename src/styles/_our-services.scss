@@ -30,6 +30,9 @@
 		  	color: white;
 		  	text-align: center;
 		  	transition: background 180ms;
+		  	background: no-repeat center;
+			background-size: cover;
+			mix-blend-mode: multiply;
 
 		  	// States
 		  	&:before{ opacity: 0; transition: opacity 160ms; height: 100%; }
@@ -57,25 +60,25 @@
 		  		margin: auto;
 		  		font-weight: 600;
 		  		@include center-content(50%, 50%);
-		  		@include type-setting(2);
+		  		@include type-setting(1);
 		  	}
 		}
 
-		$services-background: (
-			patents: $images_path+'services/patents.jpg',
-			trademarks: $images_path+'services/trademarks.jpg',
-			litigation: $images_path+'services/litigation.jpg',
-			enforcement: $images_path+'services/enforcement.jpg',
-			copyright: $images_path+'services/copyright.jpg',
-			personal-data-protection: $images_path+'services/data-protection.jpg'
-		);
-		@each $name, $icon in $services-background {
-			.section.#{$name}{
-				background: url($icon) no-repeat center;
-				background-size: cover;
-				mix-blend-mode: multiply;
-			}
-		}
+		// $services-background: (
+		// 	patents: $images_path+'services/patents.jpg',
+		// 	trademarks: $images_path+'services/trademarks.jpg',
+		// 	litigation: $images_path+'services/litigation.jpg',
+		// 	enforcement: $images_path+'services/enforcement.jpg',
+		// 	copyright: $images_path+'services/copyright.jpg',
+		// 	personal-data-protection: $images_path+'services/data-protection.jpg'
+		// );
+		// @each $name, $icon in $services-background {
+		// 	.section.#{$name}{
+		// 		background: url($icon) no-repeat center;
+		// 		background-size: cover;
+		// 		mix-blend-mode: multiply;
+		// 	}
+		// }
 
 		//////////////////////////////////
 		// <MEDIA QUERIES
@@ -90,6 +93,9 @@
 					width: 100%; height: 100%;
 					position: absolute;
 				}
+				&__title{
+			  		@include type-setting(2);
+			  	}
 			}
 		}
 	}

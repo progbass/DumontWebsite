@@ -43,7 +43,8 @@ class Resources extends Component {
                   {resources.acf.resources.map( (resource, index) => (
                     <li className="resources__item" key={index}>
                       <span className="name"><a target="_blank" href={resource.document.url}>{resource.name}</a></span>
-                      <p>{resource.description}</p>
+                      {/*<p>{resource.description}</p>*/}
+                      <span className="pdf-icon"></span>
                     </li>
                   ))}
                 </ul>

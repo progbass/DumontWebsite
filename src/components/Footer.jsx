@@ -124,6 +124,8 @@ class Footer extends Component {
             Privacy Notice
           </Link>
         )}
+
+        <div className="copyright">© 2018 - Dumont Bergman Bider & Co., S.C.</div>
       </footer>
     );
   }

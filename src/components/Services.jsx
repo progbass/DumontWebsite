@@ -76,7 +76,13 @@ class Services extends Component {
         <nav className="our-services__navigation">
           <ul className="our-services__menu">
             {services.map( service => (
-              <li style={tileHeight !== '' ? {height: tileHeight} : {}} className={`section ${service.slug}`}  key={service.id}>
+              <li
+                style={tileHeight !== ''
+                  ? {height: tileHeight, backgroundImage: `url${service.better_featured_image.source_url}`}
+                  : {backgroundImage: `url(${service.better_featured_image.source_url})`}
+                }
+                className={`section ${service.slug}`}
+                key={service.id} >
                 <div className="our-services__wrapper"></div>
                 <Link 
                     to={`/services/${service.slug}`} 
