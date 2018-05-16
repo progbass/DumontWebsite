@@ -6,7 +6,8 @@ export default ({onClick, service, ...props}) => (
     <div className="service__content">
       <div className="header">
         <h4 className="subtitle">What we do</h4>
-        <h3 className="title-main">{service.title.rendered}</h3>
+        <h3 className="title-main"
+          dangerouslySetInnerHTML={{__html:service.title.rendered}} />
       </div>
       <div className="detail"
         dangerouslySetInnerHTML={{__html:service.content.rendered}} />

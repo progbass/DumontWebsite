@@ -41,11 +41,13 @@ class App extends Component {
       modalBoxContent: null,
       modalBoxProps: null,
       teamMember: null,
-      breakpoint: null
+      breakpoint: null,
+      navigatingThroughScroll: true
     }
     this.onResize = this.onResize.bind(this);
     this.closeModalBox = this.closeModalBox.bind(this);
     this.openModalBox = this.openModalBox.bind(this);
+    this.updateNavigationMode = this.updateNavigationMode.bind(this);
     this.fixedScrollPosition = 0;
   }
   componentDidMount(){
@@ -71,6 +73,11 @@ class App extends Component {
     this.setState({
       mobileMode: windowWidth < BREAKPOINTS.TABLET_M,
       breakpoint: breakpoint
+    })
+  }
+  updateNavigationMode(flag){
+    this.setState({
+      navigatingThroughScroll: flag
     })
   }
   openModalBox(component, props){
@@ -107,7 +114,10 @@ class App extends Component {
       <Router>
         <Scroller>
           <div className="App">
-            <Header mobileMode={this.state.mobileMode} />
+            <Header
+              navigatingThroughScroll={this.state.navigatingThroughScroll}
+              onMenuItemClick={this.updateNavigationMode}
+              mobileMode={this.state.mobileMode} />
 
             <div className="sections-wrapper">
               <MainBanner

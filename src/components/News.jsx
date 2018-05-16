@@ -121,12 +121,7 @@ class News extends Component {
 
           {newsList.length > 0 && (
             <div className="section__module news-container section--spacing">
-              <Carousel
-                centerMode
-                showIndicators={false}
-                showStatus={false}
-                showThumbs={false}
-                emulateTouch
+              <div
                 className="news-list">
                 {newsList.map(news => (
                   <div className={`news`} key={news.id} >
@@ -152,7 +147,7 @@ class News extends Component {
                     </div>
                   </div>
                 ))}
-              </Carousel>
+              </div>
             </div>
           )}
 

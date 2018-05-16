@@ -92,7 +92,9 @@ class Services extends Component {
                       this.openModalBox(service)
                     }}
                   >
-                  <h3 className="section__title">{service.title.rendered}</h3>
+                  <h3
+                    className="section__title"
+                    dangerouslySetInnerHTML={{__html:service.title.rendered}} />
                 </Link>
               </li>
               ))}

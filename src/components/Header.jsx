@@ -80,8 +80,9 @@ class Header extends Component {
     document.querySelector('.header-main__scroller').style.width = `${scrollPercentage}%`;
   }
   render() {
-    const {isOpen} = this.props;
+    const {isOpen, navigatingThroughScroll} = this.props;
     const {isDescriptionOpen} = this.state;
+    console.log('asdasdasd ', !navigatingThroughScroll ? '' : 'active')
     return (
       <header className="header-main">
         <div className="fixer">
@@ -94,12 +95,54 @@ class Header extends Component {
           <div className="header-main__tools">
             <nav className="header-main__navigation">
               <ul className="menu">
-                <li className="menu__item about-us"><NavLink activeClassName="active" to="/about-us">About Us</NavLink></li>
-                <li className="menu__item our-team"><NavLink activeClassName="active" to="/our-team">Our Team</NavLink></li>
-                <li className="menu__item our-services"><NavLink activeClassName="active" to="/our-services">Our Services</NavLink></li>
-                <li className="menu__item news"><NavLink activeClassName="active" to="/news">News</NavLink></li>
-                <li className="menu__item resources"><NavLink activeClassName="active" to="/resources">Resources</NavLink></li>
-                <li className="menu__item contact"><NavLink activeClassName="active" to="/contact">Contact</NavLink></li>
+                <li className="menu__item about-us">
+                  <NavLink
+                    onClick={e=>{this.props.onMenuItemClick(false)}}
+                    activeClassName={!navigatingThroughScroll ? 'active' : 'inactive'}
+                    to="/about-us">
+                    About Us
+                  </NavLink>
+                </li>
+                <li className="menu__item our-team">
+                  <NavLink
+                    onClick={e=>{this.props.onMenuItemClick(false)}}
+                    activeClassName={!navigatingThroughScroll ? 'active' : 'inactive'}
+                    to="/our-team">
+                    Our Team
+                  </NavLink>
+                </li>
+                <li className="menu__item our-services">
+                  <NavLink
+                    onClick={e=>{this.props.onMenuItemClick(false)}}
+                    activeClassName={!navigatingThroughScroll ? 'active' : 'inactive'}
+                    to="/our-services">
+                    Our Services
+                  </NavLink>
+                </li>
+                <li className="menu__item news">
+                  <NavLink
+                    onClick={e=>{this.props.onMenuItemClick(false)}}
+                    activeClassName={!navigatingThroughScroll ? 'active' : 'inactive'}
+                    to="/news">
+                    News
+                  </NavLink>
+                </li>
+                <li className="menu__item resources">
+                  <NavLink
+                    onClick={e=>{this.props.onMenuItemClick(false)}}
+                    activeClassName={!navigatingThroughScroll ? 'active' : 'inactive'}
+                    to="/resources">
+                    Resources
+                  </NavLink>
+                </li>
+                <li className="menu__item contact">
+                  <NavLink
+                    onClick={e=>{this.props.onMenuItemClick(false)}}
+                    activeClassName={!navigatingThroughScroll ? 'active' : 'inactive'}
+                    to="/contact">
+                    Contact
+                  </NavLink>
+                </li>
               </ul>
             </nav>
 

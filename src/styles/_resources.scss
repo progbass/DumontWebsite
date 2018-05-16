@@ -55,7 +55,6 @@
     @media screen and (min-width: $bp-desktop-m){
       display: flex;
       flex-flow: row nowrap;
-      justify-content: space-between;
       align-items: flex-start;
       margin-bottom: 1em;
       .name{
