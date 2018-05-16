@@ -1,104 +1,89 @@
-
 ////////////////////////////////
 // OUR TEAM
 ////////////////////////////////
-.news{
+.news {
   // ACCORDIONS TRIGGER
-  .accordion-trigger{
+  .accordion-trigger {
     color: $color3;
-    background-image: url($images_path+'icon-arrow--black.svg');
-
-    // Accordion Icon
-    &--open{
+    background-image: url($images_path+'icon-arrow--black.svg'); // Accordion Icon
+    &--open {
       background-image: url($images_path+'icon-arrow--blackClose.svg');
-    }
-
-    // Title
-    .title-main{
+    } // Title
+    .title-main {
       margin: 0;
     }
-  }
-
-  /////////////////////
+  } /////////////////////
   // HEROE BANNER
   /////////////////////
-  .heroe-banner{
-    // TITLE
-    .title-main{
+  .heroe-banner {
+    padding-bottom: 0;
+    p:last-child {
+      margin-bottom: 0;
+    } // TITLE
+    .title-main {
       margin: 0;
       display: none;
-    }
-
-    //////////////////////////////////
+    } //////////////////////////////////
     // <MEDIA QUERIES
     //////////////////////////////////
-    @media screen and (min-width: $bp-tablet-m){
-      .title-main{
+    @media screen and (min-width: $bp-tablet-m) {
+      .title-main {
         display: block;
         margin-bottom: 1em;
         line-height: 1em;
       }
     }
-    @media screen and (min-width: $bp-desktop-m){
-      .section__module{
+    @media screen and (min-width: $bp-desktop-m) {
+      .section__module {
         display: flex;
         flex-flow: row nowrap;
       }
-      &__title{
+      &__title {
         width: 40%;
         padding-left: 10%;
         order: 2;
       }
-      &__content{
+      &__content {
         width: 50%;
       }
     }
-  }
-  
-
-  /////////////////////
+  } /////////////////////
   // NEWS CONTAINER
   /////////////////////
-  .news-container{
-    /////////////////
+  .news-container {
+    overflow: scroll; /////////////////
     // NEWS LIST
-    .news-list{
+    .news-list {
       display: flex;
-      flex-flow: row wrap;
-      //justify-content: space-between;
+      flex-flow: row wrap; //justify-content: space-between;
       background: white;
-
-      .slide{
+      .slide {
         max-width: 20em !important;
         min-width: 0 !important;
-      }
-      
-      // SINGLE POST
-      .news{
+      } // SINGLE POST
+      .news {
+        width: 20em;
         background: white;
         position: relative;
-        border-right: solid 10px transparent;
-
-        // Member Image
-        &__cover{
-          @include responsive-container( 67% );
-          .cover-link{
+        border-right: solid 10px transparent; // Member Image
+        &__cover {
+          @include responsive-container( 67%);
+          .cover-link {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%
           }
-        }
-
-        // Member Card
-        &__info{
+        } // Member Card
+        &__info {
           position: relative;
           padding: $margin-base/2 0;
           width: 100%;
           color: $color;
           line-height: 0em;
           text-align: left;
-
-          .name{
+          .name {
             @include type-setting(0);
             font-weight: 400;
             margin: 0 0 0;
@@ -106,30 +91,27 @@
           }
         }
       }
-    }
-
-    //////////////////////////////////
+    } //////////////////////////////////
     // <MEDIA QUERIES
     //////////////////////////////////
-    @media screen and (min-width: $bp-tablet-m){
-      &__list{
+    @media screen and (min-width: $bp-tablet-m) {
+      &__list {
         justify-content: flex-start;
-        .member{
+        .member {
           width: calc(33.333% - #{$margin-base});
           margin-left: #{$margin-base/2};
           margin-right: #{$margin-base/2};
         }
       }
     }
-    @media screen and (min-width: $bp-tablet-l){
+    @media screen and (min-width: $bp-tablet-l) {
       max-width: 100%;
       padding-left: $margin-base;
       padding-right: $margin-base;
-
-      &__list{
-        .member{
+      &__list {
+        .member {
           width: calc(25% - #{$margin-base});
-          &__info{
+          &__info {
             width: 85%;
             top: -2em;
             margin-left: 15%;
@@ -139,135 +121,103 @@
         }
       }
     }
-    @media screen and (min-width: $bp-tablet-l){
-      &__list{
-        .member{
+    @media screen and (min-width: $bp-tablet-l) {
+      &__list {
+        .member {
           width: calc(20% - #{$margin-base});
         }
       }
     }
-  }
-
-  /////////////////
+  } /////////////////
   // AWARDS LIST
-  .awards{
-    position: relative;
-    
-    // SINGLE MEMBER
-    &__list{
+  .awards {
+    position: relative; // SINGLE MEMBER
+    &__list {
       display: flex;
       flex-flow: row wrap;
-      position: relative;
-
-      // Awad Image
-      .award{
+      position: relative; // Awad Image
+      .award {
         display: inline-block;
         width: 5em;
         margin: 0 1em 1em;
       }
     }
-
-    @media screen and (min-width: $bp-tablet-m){
-      .title-main{
+    @media screen and (min-width: $bp-tablet-m) {
+      .title-main {
         text-align: center;
       }
     }
-  }
-
-  /////////////////
+  } /////////////////
   // CERTIFICATIONS LIST
-  .certifications{
-    position: relative;
-    
-    // SINGLE MEMBER
-    &__list{
+  .certifications {
+    position: relative; // SINGLE MEMBER
+    &__list {
       display: flex;
       flex-flow: row wrap;
-      position: relative;
-
-      // Awad Image
-      .certification{
+      position: relative; // Awad Image
+      .certification {
         display: inline-block;
         width: 8em;
         margin: 0 1em 1em;
       }
     }
-
-    @media screen and (min-width: $bp-tablet-m){
-      .title-main{
+    @media screen and (min-width: $bp-tablet-m) {
+      .title-main {
         text-align: center;
       }
     }
-  }
-
-
-  /////////////////
+  } /////////////////
   // Articles
-  .articles{
-    .article{
+  .articles {
+    .article {
       margin-bottom: 0.75em;
     }
-    .article a{
+    .article a {
       display: inline-block;
       padding-bottom: 0.2em;
       border-bottom: solid 4px $color2;
       color: $color4;
       font-weight: 600;
     }
-  }
-
-  //////////////////////////////////
+  } //////////////////////////////////
   // HALF CONTAINER
   //////////////////////////////////
-  .container--half{
-    @media screen and (min-width: $bp-tablet-m){
+  .container--half {
+    @media screen and (min-width: $bp-tablet-m) {
       display: flex;
       flex-flow: row nowrap;
       align-items: flex-start;
       .awards,
-      .certifications{
+      .certifications {
         width: 50%
       }
-      .awards{
+      .awards {
         padding-right: $margin-base*2
       }
     }
-  }
-
-  //////////////////////
+  } //////////////////////
   // ASSOCIATIONS LIST
-  .associations{
-    position: relative;
-    
-    // SINGLE MEMBER
-    &__list{
+  .associations {
+    position: relative; // SINGLE MEMBER
+    &__list {
       display: flex;
       flex-flow: row wrap;
-      position: relative;
-
-      // Awad Image
-      .association{
+      position: relative; // Awad Image
+      .association {
         display: inline-block;
         width: 5em;
         margin: 0 1em 1em;
       }
     }
-  }
-
-
-  ///////////////////////
+  } ///////////////////////
   // CERTIFICATIONS LIST
-  .certifications{
-    position: relative;
-    
-    // SINGLE MEMBER
-    &__list{
+  .certifications {
+    position: relative; // SINGLE MEMBER
+    &__list {
       display: flex;
       flex-flow: row wrap;
-      position: relative;
-
-      // Awad Image
-      .association{
+      position: relative; // Awad Image
+      .association {
         display: inline-block;
         width: 5em;
         margin: 0 1em 1em;

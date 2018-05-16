@@ -33,7 +33,7 @@ const BREAKPOINTS = {
 
 //
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       mobileMode: true,
@@ -45,25 +45,36 @@ class App extends Component {
       navigatingThroughScroll: true
     }
     this.onResize = this.onResize.bind(this);
+    this.onScroll = this.onScroll.bind(this);
     this.closeModalBox = this.closeModalBox.bind(this);
     this.openModalBox = this.openModalBox.bind(this);
     this.updateNavigationMode = this.updateNavigationMode.bind(this);
     this.fixedScrollPosition = 0;
   }
-  componentDidMount(){
+  componentDidMount() {
     window.addEventListener('resize', this.onResize);
-    this.onResize()
+    window.addEventListener('scroll', this.onScroll);
+    this.onResize();
+    this.onScroll();
   }
-  componentWillUnmount(){
-    window.removeEventListener('resize', this.onResize)
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('scroll', this.onScroll);
   }
-  onResize(){
+  onScroll() {
+    const scrollOffset = document.documentElement.scrollTop;
+    if (scrollOffset < 500)
+      document.querySelector('.back-to-top').style.visibility = 'hidden';
+    else
+      document.querySelector('.back-to-top').style.visibility = 'visible';
+  }
+  onResize() {
     const windowWidth = window.innerWidth;
 
     // find current breakpoint.
     let breakpoint// = BREAKPOINTS.MOBILE_SM;
     for (var prop in BREAKPOINTS) {
-      if(windowWidth >= BREAKPOINTS[prop]){
+      if (windowWidth >= BREAKPOINTS[prop]) {
         breakpoint = prop;
         break;
       }
@@ -75,12 +86,12 @@ class App extends Component {
       breakpoint: breakpoint
     })
   }
-  updateNavigationMode(flag){
+  updateNavigationMode(flag) {
     this.setState({
       navigatingThroughScroll: flag
     })
   }
-  openModalBox(component, props){
+  openModalBox(component, props) {
     // Get Scroll Position
     this.fixedScrollPosition = document.documentElement.scrollTop;
     document.querySelector('.App > .sections-wrapper').style.position = 'fixed';
@@ -94,7 +105,7 @@ class App extends Component {
       modalBoxProps: props
     })
   }
-  closeModalBox(e){
+  closeModalBox(e) {
     document.querySelector('.App > .sections-wrapper').style.position = 'relative';
     document.querySelector('.App > .sections-wrapper').style.top = `auto`;
     window.scrollTo(0, this.fixedScrollPosition);
@@ -107,7 +118,7 @@ class App extends Component {
     })
   }
   render() {
-    const { shouldOpenModalBox, modalBoxProps={}, modalBoxContent:ModalBoxContent } = this.state;
+    const { shouldOpenModalBox, modalBoxProps = {}, modalBoxContent: ModalBoxContent } = this.state;
     const customOverlayClass = modalBoxProps && 'customOverlayClass' in modalBoxProps ? modalBoxProps.customOverlayClass : '';
 
     return (
@@ -123,16 +134,16 @@ class App extends Component {
               <MainBanner
                 mobileMode={this.state.mobileMode}
                 breakpoint={this.state.breakpoint} />
-              <AboutUs 
-                ref={aboutus_ref} 
+              <AboutUs
+                ref={aboutus_ref}
                 mobileMode={this.state.mobileMode} />
-              <OurTeam 
-                ref={ourteam_ref} 
-                mobileMode={this.state.mobileMode} 
+              <OurTeam
+                ref={ourteam_ref}
+                mobileMode={this.state.mobileMode}
                 openModalBox={this.openModalBox}
                 closeModalBox={this.closeModalBox} />
-              <Services 
-                ref={services_ref} 
+              <Services
+                ref={services_ref}
                 mobileMode={this.state.mobileMode}
                 openModalBox={this.openModalBox}
                 closeModalBox={this.closeModalBox} />
@@ -143,6 +154,8 @@ class App extends Component {
                 closeModalBox={this.closeModalBox} />
               <Resources />
               <Contact />
+
+              <Link to="/home" className="back-to-top">Regresar</Link>
             </div>
 
             <Footer
