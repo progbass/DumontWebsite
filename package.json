@@ -2,7 +2,8 @@
   "name": "dumont",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "http://dumont.com.mx",
+  "PUBLIC_URL": "http://dumont.com.mx",
   "dependencies": {
     "autoprefixer": "7.1.6",
     "axios": "^0.18.0",

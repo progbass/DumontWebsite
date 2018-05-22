@@ -90,8 +90,10 @@
     }
     &__label{
       font-weight: 600;
-
     } 
+    .error{
+      color: red
+    }
     input[type=text],
     textarea {
       @include type-setting(0);

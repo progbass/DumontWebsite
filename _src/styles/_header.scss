@@ -1,0 +1,202 @@
+.header-main {
+  $header-height: 100px;
+  color: white;
+
+  &__module{
+    margin-bottom: $margin-base;
+  }
+  .fixer{
+    width: 100%;
+    padding: $margin-base;
+    z-index: 9999;
+    background-color: $color;
+  }
+  
+  ////////////////////////////////
+  // LOGO
+  ////////////////////////////////
+  .logo{
+    position: relative;
+    
+    // Link
+    &__link{
+      display: block;
+      width: 100%;
+      max-width: 10em;
+      margin: 0 auto $margin-base;
+    }
+    // Image
+    &__image{
+      position: relative;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  ////////////////////////////////
+  // UTILS (Languages/Searchbox)
+  ////////////////////////////////
+  &__utils{
+    display: none;
+    position: relative;
+    text-align: center;
+
+    // SEARCHBOX
+    .searchbox{
+      position: relative;
+      margin-bottom: $margin-base;
+
+      // Input
+      input{
+        color: lighten($color, 70%);
+        border: none;
+        padding: $margin-base;
+        margin: 0;
+        background: darken($color, 5%) url($images_path+'icon-search.svg') no-repeat calc(100% - 10px) center;
+        background-size: 20px;
+        transition: background-color 160ms;
+        
+        &:focus,
+        &:hover{
+          background-color: darken($color, 5%);
+        }
+      }
+    }
+    
+    // LANGUAGES
+    .languages{
+      // Language
+      .language{
+        display: inline-block;
+      }
+
+      // Link
+      .language__link{
+        display: inline-block;
+        width: 1.5em;
+        padding: 0.5em;
+        transition: background-color 160ms;
+        &:hover,
+        &.active{
+          background: $color2;
+        }
+      }
+    } 
+  }
+
+  ////////////////////////////////
+  // SCROLL INDICATOR
+  ////////////////////////////////
+  &__scroller{
+    position: absolute;
+    bottom: 0; left: $margin-base;
+    margin: 0 #{-$margin-base} 0;
+    height: 4px;
+    width: calc(100% + #{$margin-base*2});
+    background: $color;
+
+    &:before{
+      content: '';
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: $color2;
+    }
+  }
+
+  ////////////////////////////////
+  // MENU
+  ////////////////////////////////
+  .menu{
+    display: none;
+    position: relative;
+    text-align: center;
+    margin-bottom: $margin-base;
+
+    &__item{
+      position: relative;
+      //margin-left: '1em';
+      margin-bottom: $margin-base*0.75;
+      &:after{
+        display: block;
+        position: absolute;
+        content: '';
+        height: 3px;
+        width: 100%;
+        transform: scale(0, 1);
+        background: $color2;
+        transition: transform 120ms ease;
+      }
+
+      &:hover,
+      &.active{
+        &:after{
+        transform: scale(1, 1);
+        }
+      }
+
+      a{
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+  }
+
+
+  //////////////////////////////////
+  // <MEDIA QUERIES
+  //////////////////////////////////
+  @media screen and (min-width: $bp-tablet-m){
+    .fixer{
+      display: flex;
+      justify-content: space-between;
+      flex-flow: row wrap;
+      align-items: center;
+    }
+
+    .logo{
+      margin-right: 1em;
+      &__link{
+        margin-bottom: 0;
+      }
+    }
+
+    &__tools{
+      // top: 50%; right: $margin-base;
+      // transform: translateY(-50%);
+      // position: absolute;
+    }
+    .menu{
+      display: block;
+      margin: 0;
+      &__item{
+        display: inline-block;
+        margin-left: 1.5em;
+        margin-bottom: 0;
+      }
+    }
+
+    &__scroller{
+      
+    }
+  }
+  @media screen and (min-width: $bp-desktop-m){
+    .section__module{
+      display: flex;
+      flex-flow: row nowrap;
+    }
+    &__title{
+      width: 40%;
+      padding-left: 10%;
+      order: 2;
+    }
+    &__content{
+      width: 50%;
+    }
+  }
+  @media screen and (min-width: $bp-desktop-l){
+    //padding-bottom: 15em;
+    //background-size: 1280px;
+  }
+}

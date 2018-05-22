@@ -1,0 +1,102 @@
+////////////////////////////////
+// OUR SERVICES
+////////////////////////////////
+.our-services{
+	.section__module{
+		//padding: 0;
+	}
+
+	/////////////////
+	// SERVICES NAV
+	&__navigation{ position: relative; }
+
+	/////////////////
+	
+
+	/////////////////
+	// SERVICES MENU
+	&__menu{
+		position: relative;
+		width: 100%;
+		display: flex;
+		flex-flow: row wrap;
+		text-align: center;
+
+		// Service
+		.section{
+			width: 50%;
+		  	margin: auto;
+		  	background: $color;
+		  	color: white;
+		  	text-align: center;
+		  	transition: background 180ms;
+		  	background: no-repeat center;
+			background-size: cover;
+			mix-blend-mode: multiply;
+
+		  	// States
+		  	&:before{ opacity: 0; transition: opacity 160ms; height: 100%; }
+		  	&.active,
+		  	&:hover{
+		  		.our-services__wrapper{
+		  			opacity: 1;
+		  			background: cyan;
+		  			mix-blend-mode: multiply;
+		  		}
+		  	}
+			.our-services__wrapper{
+				position: relative;
+				@include responsive-container(100%);
+			}
+
+		  	// Link/Title
+		  	&__link{
+				position: absolute;
+				width: 100%; height: 100%;
+				top: 0; left: 0;
+		  	}
+		  	&__title{
+		  		position: absolute;
+		  		margin: auto;
+		  		font-weight: 600;
+		  		@include center-content(50%, 50%);
+		  		@include type-setting(1);
+		  	}
+		}
+
+		// $services-background: (
+		// 	patents: $images_path+'services/patents.jpg',
+		// 	trademarks: $images_path+'services/trademarks.jpg',
+		// 	litigation: $images_path+'services/litigation.jpg',
+		// 	enforcement: $images_path+'services/enforcement.jpg',
+		// 	copyright: $images_path+'services/copyright.jpg',
+		// 	personal-data-protection: $images_path+'services/data-protection.jpg'
+		// );
+		// @each $name, $icon in $services-background {
+		// 	.section.#{$name}{
+		// 		background: url($icon) no-repeat center;
+		// 		background-size: cover;
+		// 		mix-blend-mode: multiply;
+		// 	}
+		// }
+
+		//////////////////////////////////
+		// <MEDIA QUERIES
+		//////////////////////////////////
+		@media screen and (min-width: $bp-tablet-m){
+			&__wrapper{
+				@include responsive-container(75%);
+			}
+			.section{
+				width: 33.333%;
+				.our-services__wrapper{
+					width: 100%; height: 100%;
+					position: absolute;
+				}
+				&__title{
+			  		@include type-setting(2);
+			  	}
+			}
+		}
+	}
+}

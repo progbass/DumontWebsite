@@ -6,7 +6,13 @@ import config from '../config';
 class Contact extends Component {
   constructor(props){
     super(props);
-    this.state = {value: ''};
+    this.state = {
+      name: '',
+      email: '',
+      message: '',
+      errors: [],
+      isFormSubmitting: false
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -19,12 +25,66 @@ class Contact extends Component {
       [name]: value
     });
   }
-  handleSubmit(event){
-    alert('A name was submitted: ' + this.state.value);
+  handleSubmit(event) {
     event.preventDefault();
+
+    if(this.state.isFormSubmitting) {
+      return false;
+    }
+
+    //
+    let errors = [];
+    const {email, name, message} = this.state;
+
+    if(name.length < 2 || name === ''){
+      errors.push({name: 'Please write a valid name.'});
+    }
+    if (email.length < 2 || email === '') {
+      errors.push({
+        email: 'Please write a valid email.'
+      });
+    }
+    if (message.length < 2 || message === '') {
+      errors.push({
+        message: 'Please write your message.'
+      });
+    }
+
+    // Handle Validation Errors
+    if(errors.length){
+      this.setState({
+        errors: errors,
+        isFormSubmitting: false
+      });
+    
+    // Submit Form
+    } else {
+      this.props.sendContactForm({
+        email_txt: email,
+        name_txt: name,
+        message_txt: message,
+      })
+      .then(response => {
+        console.log('success')
+        //this.setState({});
+      })
+      .catch(error => {
+        console.log('error')
+        this.setState({
+          isFormSubmitting: false
+        });
+      });
+
+      // Reset errors list
+      this.setState({
+        errors: [],
+        isFormSubmitting: true
+      });
+    }
   }
   render() {
     const {isOpen} = this.props;
+    const {errors} = this.state;
     return (
       <section className="section section--spacing contact">
         <div className="section__module">
@@ -35,10 +95,12 @@ class Contact extends Component {
               <div className="form__data">
                 <label className="form__label" htmlFor="name_txt">Name</label>
                 <input type="text" name="name" id="name_txt" value={this.state.name} onChange={this.handleChange} />
+                {errors.find(error => 'name' in error) && <div className="error">Please write a valid name.</div>}  
               </div>
               <div className="form__data">
                 <label className="form__label" htmlFor="mail_txt">Email</label>
                 <input type="text" name="email" id="mail_txt" value={this.state.email} onChange={this.handleChange} />
+                {errors.find(error => 'email' in error) && <div className="error">Please write a valid email.</div>}  
               </div>
               <div className="form__data">
                 <label className="form__label" htmlFor="message_txt">Your Message</label>
@@ -48,9 +110,10 @@ class Contact extends Component {
                   rows="7" 
                   onChange={this.handleChange}
                   value={this.state.message} />
+                {errors.find(error => 'message' in error) && <div className="error">Please write your message.</div>}  
               </div>
               <div className="form__data">
-                <input type="submit" name="submit" id="submit_btn" value="Contact Us" />
+                <input disabled={this.state.isFormSubmitting} type="submit" name="submit" id="submit_btn" value="Contact Us" />
               </div>
             </form>
           </div>

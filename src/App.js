@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import axios from 'axios';
 
 import './App.scss';
+import config from './config';
+
 import Scroller from './Scroller';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -42,13 +45,14 @@ class App extends Component {
       modalBoxProps: null,
       teamMember: null,
       breakpoint: null,
-      navigatingThroughScroll: true
+      navigatingThroughScroll: true,
     }
     this.onResize = this.onResize.bind(this);
     this.onScroll = this.onScroll.bind(this);
     this.closeModalBox = this.closeModalBox.bind(this);
     this.openModalBox = this.openModalBox.bind(this);
     this.updateNavigationMode = this.updateNavigationMode.bind(this);
+    this.sendContactForm = this.sendContactForm.bind(this);
     this.fixedScrollPosition = 0;
   }
   componentDidMount() {
@@ -117,6 +121,10 @@ class App extends Component {
       modalBoxProps: null
     })
   }
+  sendContactForm(mailData){
+    // Send form
+    return axios.post(`${config.theme_url}/mail.php`, mailData);
+  }
   render() {
     const { shouldOpenModalBox, modalBoxProps = {}, modalBoxContent: ModalBoxContent } = this.state;
     const customOverlayClass = modalBoxProps && 'customOverlayClass' in modalBoxProps ? modalBoxProps.customOverlayClass : '';
@@ -153,7 +161,8 @@ class App extends Component {
                 openModalBox={this.openModalBox}
                 closeModalBox={this.closeModalBox} />
               <Resources />
-              <Contact />
+              <Contact
+                sendContactForm={this.sendContactForm} />
 
               <Link to="/home" className="back-to-top">Regresar</Link>
             </div>

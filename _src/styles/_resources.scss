@@ -1,0 +1,102 @@
+
+////////////////////////////////
+// RESOURCES
+////////////////////////////////
+.resources{
+  background: #525252;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: white;
+  
+  // Section Module
+  .section__module{
+    position: relative;
+    display: flex;
+    flex-flow: column
+  }
+
+  &__title{
+    order: -1;
+  }
+
+  &__description{
+    @media screen and (min-width: $bp-tablet-m){
+      margin-bottom: $margin-base*5;
+    }
+    @media screen and (min-width: $bp-desktop-m){
+      margin-bottom: $margin-base*7;
+    }
+  }
+
+  &__list{
+
+  }
+  &__item{
+    position: relative;
+
+    .name{
+      display: inline-block;
+      padding-bottom: 0.25em;
+      border-bottom: solid 3px $color2;
+      margin-bottom: 0.75em;
+    }
+
+    .pdf-icon{
+      width: 1.12em;
+      top: 0.32em;
+      left: 0.875em;
+      display: inline-block;
+      background: url($images_path+'icon-pdf.svg') no-repeat center;
+      background-size: contain;
+      @include responsive-container(130.674%);
+    }
+
+    @media screen and (min-width: $bp-desktop-m){
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: flex-start;
+      margin-bottom: 1em;
+      .name{
+        display: inline-block;
+      }
+      p{
+        display: inline-block;
+        margin: 0; padding: 0;
+        width: 50%;
+      }
+    }
+  }
+
+  ///////////////////////////////////////////////////
+  // MEDIA QUERIES
+  ///////////////////////////////////////////////////
+  @media screen and (min-width: $bp-tablet-sm){
+    background-image: url($images_path+'resources-bg.jpg');
+  }
+  @media screen and (min-width: $bp-tablet-m){
+    &:before{
+      content: '';
+      display: block;
+      position: absolute;
+      width: percentage(900/$context);
+      height: 100%;
+      right: 0; top: 0;
+      background: rgba(#000, 0.5)
+    }
+    // Section Module
+    .section__module{
+      flex-flow: row ;
+      justify-content: space-between;
+    }
+
+    &__content{
+      width: percentage(968/$context)
+    }
+    &__title{
+      order: 1;
+      margin: 0;
+      width: percentage(800/$context)
+    }
+  }
+}
