@@ -43,6 +43,9 @@
 		  			background: cyan;
 		  			mix-blend-mode: multiply;
 		  		}
+		  		.section__title{
+			  		color: white
+			  	}
 		  	}
 			.our-services__wrapper{
 				position: relative;
@@ -61,6 +64,9 @@
 		  		font-weight: 600;
 		  		@include center-content(50%, 50%);
 		  		@include type-setting(1);
+		  		&:hover{
+		  			color: white
+		  		}
 		  	}
 		}
 

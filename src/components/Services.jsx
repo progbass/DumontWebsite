@@ -46,7 +46,7 @@ class Services extends Component {
   }
   componentDidMount(){
     // Load Services List
-    axios.get(`${config.api_baseURL}/services/`)
+    axios.get(`${window.DumontSettings.URL.api_baseURL}/services/`)
     .then(response => {
       this.setState({
         services: response.data,
@@ -78,14 +78,14 @@ class Services extends Component {
             {services.map( service => (
               <li
                 style={tileHeight !== ''
-                  ? {height: tileHeight, backgroundImage: `url${service.better_featured_image.source_url}`}
+                  ? {height: tileHeight, backgroundImage: `url(${service.better_featured_image.source_url})`}
                   : {backgroundImage: `url(${service.better_featured_image.source_url})`}
                 }
                 className={`section ${service.slug}`}
                 key={service.id} >
                 <div className="our-services__wrapper"></div>
                 <Link 
-                    to={`/services/${service.slug}`} 
+                    to={`${window.DumontSettings.URL.domain}services/${service.slug}`} 
                     className="section__link" 
                     onClick={(e) => {
                       //e.preventDefault();

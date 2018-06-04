@@ -105,7 +105,7 @@ class AboutUs extends Component {
   }
   componentDidMount(){
     // Load Team Members
-    axios.get(`${config.api_baseURL}/team-members/?per_page=100`)
+    axios.get(`${window.DumontSettings.URL.api_baseURL}/team-members/?per_page=100`)
     .then(response => {
       this.setState({
         members: response.data,//.reverse(),

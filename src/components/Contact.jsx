@@ -150,7 +150,7 @@ class Contact extends Component {
 
         <div className="section__module logo">
           <Link to="/home" >
-            <img src={`${config.theme_url}/media/logo-footer.svg`} className="image--responsive" alt="Dumont Logo" />
+            <img src={require(`../img/logo-footer.svg`)} className="image--responsive" alt="Dumont Logo" />
           </Link>
         </div>
       </section>

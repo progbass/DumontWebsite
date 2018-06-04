@@ -82,13 +82,13 @@ class Header extends Component {
   render() {
     const {isOpen, navigatingThroughScroll} = this.props;
     const {isDescriptionOpen} = this.state;
-    console.log('asdasdasd ', !navigatingThroughScroll ? '' : 'active')
+
     return (
       <header className="header-main">
         <div className="fixer">
           <div className="logo">
             <Link to="/home" className="logo__link">
-              <img src={`${config.theme_url}/media/logo-header.svg`} className="logo__image image--responsive" alt="Dumont Logo" />
+              <img src={`${window.DumontSettings.URL.theme_url}build/media/logo-header.svg`} className="logo__image image--responsive" alt="Dumont Logo" />
             </Link>
           </div>
           
@@ -99,7 +99,7 @@ class Header extends Component {
                   <NavLink
                     onClick={e=>{this.props.onMenuItemClick(false)}}
                     activeClassName={!navigatingThroughScroll ? 'active' : 'inactive'}
-                    to="/about-us">
+                    to={`${window.DumontSettings.URL.domain}about-us`}>
                     About Us
                   </NavLink>
                 </li>
@@ -107,7 +107,7 @@ class Header extends Component {
                   <NavLink
                     onClick={e=>{this.props.onMenuItemClick(false)}}
                     activeClassName={!navigatingThroughScroll ? 'active' : 'inactive'}
-                    to="/our-team">
+                    to={`${window.DumontSettings.URL.domain}our-team`}>
                     Our Team
                   </NavLink>
                 </li>
@@ -115,7 +115,7 @@ class Header extends Component {
                   <NavLink
                     onClick={e=>{this.props.onMenuItemClick(false)}}
                     activeClassName={!navigatingThroughScroll ? 'active' : 'inactive'}
-                    to="/our-services">
+                    to={`${window.DumontSettings.URL.domain}our-services`}>
                     Our Services
                   </NavLink>
                 </li>
@@ -123,7 +123,7 @@ class Header extends Component {
                   <NavLink
                     onClick={e=>{this.props.onMenuItemClick(false)}}
                     activeClassName={!navigatingThroughScroll ? 'active' : 'inactive'}
-                    to="/news">
+                    to={`${window.DumontSettings.URL.domain}news`}>
                     News
                   </NavLink>
                 </li>
@@ -131,7 +131,7 @@ class Header extends Component {
                   <NavLink
                     onClick={e=>{this.props.onMenuItemClick(false)}}
                     activeClassName={!navigatingThroughScroll ? 'active' : 'inactive'}
-                    to="/resources">
+                    to={`${window.DumontSettings.URL.domain}resources`}>
                     Resources
                   </NavLink>
                 </li>
@@ -139,7 +139,7 @@ class Header extends Component {
                   <NavLink
                     onClick={e=>{this.props.onMenuItemClick(false)}}
                     activeClassName={!navigatingThroughScroll ? 'active' : 'inactive'}
-                    to="/contact">
+                    to={`${window.DumontSettings.URL.domain}contact`}>
                     Contact
                   </NavLink>
                 </li>

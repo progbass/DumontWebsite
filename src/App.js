@@ -56,6 +56,7 @@ class App extends Component {
     this.fixedScrollPosition = 0;
   }
   componentDidMount() {
+    console.log('SETTINGS ', window.DumontSettings.URL)
     window.addEventListener('resize', this.onResize);
     window.addEventListener('scroll', this.onScroll);
     this.onResize();
@@ -123,7 +124,7 @@ class App extends Component {
   }
   sendContactForm(mailData){
     // Send form
-    return axios.post(`${config.theme_url}/mail.php`, mailData);
+    return axios.post(`${window.DumontSettings.URL.theme_url}/mail.php`, mailData);
   }
   render() {
     const { shouldOpenModalBox, modalBoxProps = {}, modalBoxContent: ModalBoxContent } = this.state;

@@ -105,7 +105,7 @@ class Footer extends Component {
                     e.preventDefault();
                     this.openModalBox(post)
                   }} >
-                    {post.acf.date} <span className="title">{post.title.rendered}</span>
+                    {post.acf.date} <span className="title" dangerouslySetInnerHTML={{__html:post.title.rendered}} />
                   </a>
                 </li>
               ))}

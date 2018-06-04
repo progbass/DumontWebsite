@@ -14,7 +14,7 @@ class Resources extends Component {
   }
   componentDidMount(){
     // Load Content
-    axios.get(`${config.api_baseURL}/pages/44/`)
+    axios.get(`${window.DumontSettings.URL.api_baseURL}/pages/44/`)
     .then(response => {
       this.setState({
         content: response.data,

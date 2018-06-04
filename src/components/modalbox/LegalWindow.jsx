@@ -3,9 +3,6 @@ import { withRouter, Redirect } from 'react-router';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 
-import config from '../../config';
-
-
 class LegalWindow extends Component {
   constructor(props){
     super(props);

@@ -14,7 +14,7 @@ class AboutUs extends Component {
   }
   componentDidMount(){
     // Load Content
-    axios.get(`${config.api_baseURL}/pages/`)
+    axios.get(`${window.DumontSettings.URL.api_baseURL}/pages/`)
     .then(response => {
       this.setState({
         posts: response.data,
@@ -51,7 +51,7 @@ class AboutUs extends Component {
                 dangerouslySetInnerHTML={{__html:aboutUs.content.rendered}}
               />
               <div className="information__flag">
-                <img className="image--responsive" src={`${config.theme_url}/media/aboutus-flag.jpg`} alt="Bandera Mexicana" />
+                <img className="image--responsive" src={require(`../img/aboutus-flag.jpg`)} alt="Bandera Mexicana" />
               </div>
             </div>
           )}

@@ -3,7 +3,6 @@ import { withRouter, Redirect } from 'react-router';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 
-import config from '../../config';
 import Patents from '../services/Patents';
 import Trademarks from '../services/Trademarks';
 import Litigation from '../services/Litigation';

@@ -40,7 +40,7 @@ class News extends Component {
   }
   componentDidMount() {
     // Load Content
-    axios.get(`${config.api_baseURL}/pages/102/`)
+    axios.get(`${window.DumontSettings.URL.api_baseURL}/pages/102/`)
       .then(response => {
         this.setState({
           content: response.data,
@@ -49,7 +49,7 @@ class News extends Component {
       });
 
     // Load News
-    axios.get(`${config.api_baseURL}/news-section?per_page=100`)
+    axios.get(`${window.DumontSettings.URL.api_baseURL}/news-section?per_page=100`)
       .then(response => {
         this.setState({
           news: response.data,
@@ -58,7 +58,7 @@ class News extends Component {
       })
 
     // Load Awards
-    axios.get(`${config.api_baseURL}/awards?per_page=100`)
+    axios.get(`${window.DumontSettings.URL.api_baseURL}/awards?per_page=100`)
       .then(response => {
         this.setState({
           awards: response.data,
@@ -67,7 +67,7 @@ class News extends Component {
       })
 
     // Load Awards
-    axios.get(`${config.api_baseURL}/certifications?per_page=100`)
+    axios.get(`${window.DumontSettings.URL.api_baseURL}/certifications?per_page=100`)
       .then(response => {
         this.setState({
           certifications: response.data,
@@ -76,7 +76,7 @@ class News extends Component {
       })
 
     // Load Articles
-    axios.get(`${config.api_baseURL}/articles?per_page=100`)
+    axios.get(`${window.DumontSettings.URL.api_baseURL}/articles?per_page=100`)
       .then(response => {
         this.setState({
           articles: response.data,
@@ -85,7 +85,7 @@ class News extends Component {
       })
 
     // Load Associations
-    axios.get(`${config.api_baseURL}/associations?per_page=100`)
+    axios.get(`${window.DumontSettings.URL.api_baseURL}/associations?per_page=100`)
       .then(response => {
         this.setState({
           associations: response.data,
@@ -151,7 +151,7 @@ class News extends Component {
                       </Link>
                     </div>
                     <div className="news__info news__info">
-                      <h3 className="name">{news.title.rendered}</h3>
+                      <h3 className="name" dangerouslySetInnerHTML={{__html:news.title.rendered}} />
                     </div>
                   </div>
                 ))}
@@ -216,7 +216,7 @@ class News extends Component {
               <ul className="articles__list">
                 {articlesList.map(article => (
                   <li className="article list__item" key={`article-${article.id}`} >
-                    <a href={article.acf.file} target="_blank" >{article.title.rendered}</a>
+                    <a href={article.acf.file} target="_blank" dangerouslySetInnerHTML={{__html:article.title.rendered}} />
                   </li>
                 ))}
               </ul>

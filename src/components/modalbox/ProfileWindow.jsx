@@ -3,7 +3,6 @@ import { withRouter, Redirect } from 'react-router';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 
-import config from '../../config';
 import Patents from '../services/Patents';
 import Trademarks from '../services/Trademarks';
 import Litigation from '../services/Litigation';
@@ -26,8 +25,10 @@ class ProfileWindow extends Component {
       <div className="modalbox__container profile section--spacing ">
         <div className="profile__info">
           <div className="profile__head"> 
-            <h2 className="name">{teamMember.title.rendered}</h2>
-            <h3 className="role">{teamMember.acf.role}</h3>
+            <h2 className="name"
+            dangerouslySetInnerHTML={{__html:teamMember.title.rendered}} />
+            <h3 className="role"
+            dangerouslySetInnerHTML={{__html:teamMember.acf.role}} />
             <span className="email"><a href={`mailto:${teamMember.acf.email}`}>{teamMember.acf.email}</a></span>
           </div>
 
@@ -38,9 +39,11 @@ class ProfileWindow extends Component {
               </div>
             )}
             
-            {/*<div className="icon card">
-              <a href="#" onClick={e=>{e.preventDefault();}}>Info</a>
-            </div>*/}
+            {teamMember.acf.vcard && (
+              <div className="icon card">
+                <a href={teamMember.acf.vcard}>Info</a>
+              </div>
+            )}
             
             {teamMember.acf.linkedin !== "" && (
               <div className="icon linkedin">
@@ -60,7 +63,9 @@ class ProfileWindow extends Component {
               <h4 className="subtitle">Published Articles:</h4>
               <ul className="list">
                 {teamMember.acf.articles.map( (article, index) => (
-                  <li className="article list__item" key={`language-${index}`} ><a href={article.article} target="_blank" >{article.article_title}</a></li>
+                  <li className="article list__item" key={`language-${index}`} >
+                    <a href={article.article} target="_blank" dangerouslySetInnerHTML={{__html:article.article_title}} />
+                  </li>
                 ))}
               </ul>
             </div>
@@ -71,7 +76,7 @@ class ProfileWindow extends Component {
               <h4 className="subtitle">Languages:</h4>
               <ul className="list">
                 {teamMember.acf.languages.map( (language, index) => (
-                  <li className="language list__item" key={`language-${index}`} >{language.language}</li>
+                  <li className="language list__item" key={`language-${index}`} dangerouslySetInnerHTML={{__html:language.language}} />
                 ))}
               </ul>
             </div>

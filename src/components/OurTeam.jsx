@@ -27,7 +27,7 @@ class OurTeam extends Component {
   }
   componentDidMount(){
     // Load Content
-    axios.get(`${config.api_baseURL}/pages/`)
+    axios.get(`${window.DumontSettings.URL.api_baseURL}/pages/`)
     .then(response => {
       this.setState({
         posts: response.data,
@@ -36,7 +36,7 @@ class OurTeam extends Component {
     });
 
     // Load Team Members
-    axios.get(`${config.api_baseURL}/team-members?per_page=100`)
+    axios.get(`${window.DumontSettings.URL.api_baseURL}/team-members?per_page=100`)
     .then(response => {
       this.setState({
         members: response.data,
@@ -85,7 +85,7 @@ class OurTeam extends Component {
                     <div className="member__cover">
                       <Link 
                         className="cover-link" 
-                        to={`/our-team/${member.slug}/`}  
+                        to={`our-team/${member.slug}/`}  
                         onClick={e => {
                           this.openModalBox(member);
                           return false;
@@ -100,8 +100,8 @@ class OurTeam extends Component {
                       </Link>
                     </div>
                     <div className="member__info member__info">
-                      <h3 className="name">{member.title.rendered}</h3>
-                      <span className="role">{member.acf.role}</span>
+                      <h3 className="name" dangerouslySetInnerHTML={{__html:member.title.rendered}} />
+                      <span className="role" dangerouslySetInnerHTML={{__html:member.acf.role}} />
                     </div>
                   </li>
                 ))}
