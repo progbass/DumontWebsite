@@ -8,7 +8,7 @@ import config from './config';
 import Scroller from './Scroller';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import MainBanner from './components/MainBanner';
+import MainBanner from './components/MainBannerTeam';
 import AboutUs from './components/AboutUs';
 import OurTeam from './components/OurTeam';
 import Services from './components/Services';
@@ -130,6 +130,9 @@ class App extends Component {
     const { shouldOpenModalBox, modalBoxProps = {}, modalBoxContent: ModalBoxContent } = this.state;
     const customOverlayClass = modalBoxProps && 'customOverlayClass' in modalBoxProps ? modalBoxProps.customOverlayClass : '';
 
+    const appPath = window.DumontSettings.URL.domain;
+    var absoluteURIPath = appPath.replace (/^[a-z]{4,5}\:\/{2}[a-z]{1,}\:[0-9]{1,4}.(.*)/, '$1'); // http or https
+
     return (
       <Router>
         <Scroller>
@@ -165,7 +168,7 @@ class App extends Component {
               <Contact
                 sendContactForm={this.sendContactForm} />
 
-              <Link to="/home" className="back-to-top">Regresar</Link>
+              <Link to={`/${absoluteURIPath}home`} className="back-to-top">Regresar</Link>
             </div>
 
             <Footer

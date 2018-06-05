@@ -51,7 +51,7 @@ class AboutUs extends Component {
                 dangerouslySetInnerHTML={{__html:aboutUs.content.rendered}}
               />
               <div className="information__flag">
-                <img className="image--responsive" src={require(`../img/aboutus-flag.jpg`)} alt="Bandera Mexicana" />
+                <img className="image--responsive" src={`${window.DumontSettings.URL.theme_url}/build/static/media/aboutus-flag.jpg`} alt="Bandera Mexicana" />
               </div>
             </div>
           )}

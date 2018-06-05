@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Carousel from 'nuka-carousel';
 
 import config from '../config';
 
@@ -24,7 +23,7 @@ class AboutUs extends Component {
   componentWillReceiveProps(nextProps){
     // Check breakpoint change to update layout
     if(this.props.breakpoint !== nextProps.breakpoint){
-      //this.configSlider(nextProps.breakpoint);
+      this.configSlider(nextProps.breakpoint);
     }
   }
   getColumnNumbers(breakpoint){
@@ -48,7 +47,7 @@ class AboutUs extends Component {
   componentDidUpdate(){
     if(this.state.membersLoaded){
       this.membersListInit = true;
-      //this.configSlider(this.props.breakpoint);
+      this.configSlider(this.props.breakpoint);
     }
   }
   configSlider(breakpoint){
@@ -130,18 +129,16 @@ class AboutUs extends Component {
       <section className="home main-banner section">
         <div className="section--dark section--spacing heroe-banner">
           {members.length > 0 && (
-            <Carousel
-              autoplay="false"
-              dragging="true"
-              slidesToShow="1"
-              heightMode="first"
-              width="100%">
+            <ul className="members-list">
               {members.map(member => (
-                <img  
+                <li 
+                  className="member" 
                   key={member.id}
-                  src={member.better_featured_image.source_url} />
+                  style={{
+                    backgroundImage: `url(${member.better_featured_image.source_url})`
+                  }} />
               ))}
-            </Carousel>
+            </ul>
           )}
           <h2 className="title">Your Ideas.<br/>Our Business.</h2>
         </div>
