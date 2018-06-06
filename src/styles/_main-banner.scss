@@ -13,16 +13,40 @@
 .main-banner{
   position: relative;
 
+  .carousel{
+    height: 50vh !important;
+    min-height: 50vh;
+    max-height: 500px;
+    overflow: hidden;
+
+    .slider-frame{
+      height: 100% !important;
+    }
+    .slider-list{
+      height: 100% !important;
+    }
+    .slider-slide{
+      height: 100% !important;
+
+      .slide{
+        width: auto;
+        height: 100%;
+        margin: 0 auto;
+      }
+    }
+  }
+
   /////////////////////
   // HEROE BANNER
   /////////////////////
   .heroe-banner{
   	position: relative;
-  	height: 80vh;
-    max-height: 360px;
+  	//height: 80vh;
+    //max-height: 360px;
     overflow: hidden;
   	background: url($images_path+'aboutus-bg.jpg') center no-repeat;
   	background-size: cover;
+    background-attachment: fixed;
 
     // Overlay
     &:after{
@@ -111,7 +135,7 @@
       }
     }
     @media screen and (min-width: $bp-desktop-m){
-      max-height: 540px;
+      //max-height: 540px;
     }
   }
 }

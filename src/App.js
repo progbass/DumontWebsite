@@ -8,7 +8,7 @@ import config from './config';
 import Scroller from './Scroller';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import MainBanner from './components/MainBannerTeam';
+import MainBanner from './components/MainBanner';
 import AboutUs from './components/AboutUs';
 import OurTeam from './components/OurTeam';
 import Services from './components/Services';

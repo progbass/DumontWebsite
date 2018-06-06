@@ -31,7 +31,7 @@ class Resources extends Component {
     return (
       <section
         style={{backgroundImage: `url(${resources.acf.background})`}}
-        className="section section--spacing resources">
+        className="section section--spacing resources desktop-min-height">
         <div className="section__module">
           
           <div className="resources__content">

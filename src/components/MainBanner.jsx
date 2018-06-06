@@ -134,16 +134,21 @@ class AboutUs extends Component {
               autoplay="false"
               dragging="true"
               slidesToShow="1"
-              heightMode="first"
-              width="100%">
+              heightMode="current"
+              width="100%"
+              swiping
+              className="carousel"
+              renderCenterLeftControls={({ previousSlide }) => null}
+              renderCenterRightControls={({ nextSlide }) => null}
+              renderBottomCenterControls={({ nextSlide }) => null} >
               {members.map(member => (
                 <img  
+                  className="slide"
                   key={member.id}
                   src={member.better_featured_image.source_url} />
               ))}
             </Carousel>
           )}
-          <h2 className="title">Your Ideas.<br/>Our Business.</h2>
         </div>
       </section>
     );

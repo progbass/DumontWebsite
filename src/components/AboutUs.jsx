@@ -39,7 +39,7 @@ class AboutUs extends Component {
 
         <div className={`accordion-collapsable ${ isOpen ? 'accordion-collapsable--open' : ''}`}>
           {'content' in aboutUs && (
-            <div className={`section__module section--spacing information`}>
+            <div className={`section__module section--spacing information desktop-min-height`}>
               <div className={`information__title`}>
                 <h2 
                   className="title-main" 
@@ -59,7 +59,7 @@ class AboutUs extends Component {
           {'content' in biography && (
             <div
               style={{backgroundImage: `url(${biography.acf.background.url})`}}
-              className="section--dark section--spacing biography">
+              className="section--dark section--spacing biography desktop-min-height">
               <div className="section__module ">
                 <div 
                   className={`biography__content`} 

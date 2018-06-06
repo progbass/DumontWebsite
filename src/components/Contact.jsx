@@ -90,7 +90,7 @@ class Contact extends Component {
     var absoluteURIPath = appPath.replace (/^[a-z]{4,5}\:\/{2}[a-z]{1,}\:[0-9]{1,4}.(.*)/, '$1'); // http or https
 
     return (
-      <section className="section section--spacing contact">
+      <section className="section section--spacing contact desktop-min-height">
         <div className="section__module">
 
           <div className="contact__content">

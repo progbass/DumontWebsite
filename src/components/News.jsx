@@ -107,7 +107,7 @@ class News extends Component {
 
     // Render Component
     return (
-      <section className="section news">
+      <section className="section news ">
         <div className={`section--spacing accordion-trigger ${isOpen ? 'accordion-trigger--open' : ''}`} >
           <h2 className="title-main">News</h2>
         </div>

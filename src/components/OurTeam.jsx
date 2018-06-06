@@ -65,10 +65,12 @@ class OurTeam extends Component {
 
         <div className={`accordion-collapsable ${ isOpen ? 'accordion-collapsable--open' : ''}`}>
           {'content' in ourTeam > 0 && (
-            <div
-              style={{backgroundImage: `url(${ourTeam.acf.background.url})`}}
-              className="section--spacing heroe-banner">
-              <div className="section__module background-container">
+            <div className="section--spacing heroe-banner desktop-min-height">
+
+              <div className="background-container"
+              style={{backgroundImage: `url(${ourTeam.acf.background.url})`}} />
+
+              <div className="section__module">
                 <div className={`heroe-banner__title`} >
                   <h2 className="title-main">Our Team</h2>
                 </div>

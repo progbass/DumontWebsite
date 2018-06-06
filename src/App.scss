@@ -81,6 +81,11 @@ a {
     }
   }
 }
+.desktop-min-height{
+  @media screen and (min-width: $bp-tablet-m) {
+    min-height: 50vh
+  }
+}
 
 .title-main {
   @include type-setting(2);
