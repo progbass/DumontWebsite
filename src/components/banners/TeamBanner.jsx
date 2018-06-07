@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import config from '../config';
+import config from '../../config';
 
-class AboutUs extends Component {
+class TeamBanner extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -146,4 +146,4 @@ class AboutUs extends Component {
     );
   }
 }
-export default AboutUs;
+export default TeamBanner;

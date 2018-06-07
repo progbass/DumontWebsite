@@ -92,7 +92,7 @@ class Services extends Component {
                     className="section__link" 
                     onClick={(e) => {
                       //e.preventDefault();
-                      this.openModalBox(service)
+                      //this.openModalBox(service)
                     }}
                   >
                   <h3

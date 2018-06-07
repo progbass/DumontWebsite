@@ -7,10 +7,21 @@ const scrollConfig = { offset: 0, align: 'top', duration: 1000 };
 class NewsWindow extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      article: null
+    }
+  }
+  componentDidMount(){
+    // Load Content
+    axios.get(`${window.DumontSettings.URL.api_baseURL}/news-section?slug=${this.props.match.params.article}/`)
+    .then(response => {
+      this.setState({
+        article: response.data[0]
+      })
+    });
   }
   render() {
-    const {post} = this.props;
-    console.log(post)
+    const {article:post} = this.state;
 
     if(!post) return null;
 
@@ -29,9 +40,11 @@ class NewsWindow extends Component {
             <div className="date">
               {post.acf.date}
             </div>
-            <div className="source">
-              Fuente: {post.acf.source}
-            </div>
+            {post.acf.source !== '' && (
+              <div className="source">
+                Fuente: {post.acf.source}
+              </div>
+            )}
           </div>
         </div>
 
@@ -42,4 +55,4 @@ class NewsWindow extends Component {
     );
   }
 }
-export default NewsWindow;
+export default withRouter(NewsWindow);

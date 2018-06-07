@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import axios from 'axios';
 
 import './App.scss';
@@ -15,6 +16,10 @@ import Services from './components/Services';
 import News from './components/News';
 import Contact from './components/Contact';
 import Resources from './components/Resources';
+
+import NewsWindow from './components/modalbox/NewsWindow';
+import ServicesWindow from './components/modalbox/ServicesWindow'
+
 //
 const aboutus_ref = React.createRef();
 const ourteam_ref = React.createRef();
@@ -56,7 +61,7 @@ class App extends Component {
     this.fixedScrollPosition = 0;
   }
   componentDidMount() {
-    console.log('SETTINGS ', window.DumontSettings.URL)
+    //console.log('SETTINGS ', window.DumontSettings.URL)
     window.addEventListener('resize', this.onResize);
     window.addEventListener('scroll', this.onScroll);
     this.onResize();
@@ -129,12 +134,12 @@ class App extends Component {
   render() {
     const { shouldOpenModalBox, modalBoxProps = {}, modalBoxContent: ModalBoxContent } = this.state;
     const customOverlayClass = modalBoxProps && 'customOverlayClass' in modalBoxProps ? modalBoxProps.customOverlayClass : '';
+    const { history } = this.props;
 
     const appPath = window.DumontSettings.URL.domain;
     var absoluteURIPath = appPath.replace (/^[a-z]{4,5}\:\/{2}[a-z]{1,}\:[0-9]{1,4}.(.*)/, '$1'); // http or https
 
     return (
-      <Router>
         <Scroller>
           <div className="App">
             <Header
@@ -176,17 +181,43 @@ class App extends Component {
               closeModalBox={this.closeModalBox}
               mobileMode={this.state.mobileMode} />
 
-            {(shouldOpenModalBox && ModalBoxContent) && (
+            {(shouldOpenModalBox && ModalBoxContent) ? (
               <div className={`modalbox ${shouldOpenModalBox ? 'modalbox--open' : ''}`}>
                 <div className={`modalbox__overlay ${customOverlayClass}`} onClick={this.closeModalBox} ></div>
-                {<ModalBoxContent {...modalBoxProps} />}
+                <ModalBoxContent {...modalBoxProps} />
+              </div>
+              
+            ) : (
+              <div>
+                <Route exact path={`/${absoluteURIPath}read/:article`} render={()=>{
+                  return (
+                    <div className={`modalbox modalbox--open`}>
+                      <div className={`modalbox__overlay ${customOverlayClass}`} onClick={() => {
+                        //this.closeModalBox();
+                        history.push(`/${absoluteURIPath}`)
+                      }} ></div>
+                      <NewsWindow {...modalBoxProps} />
+                    </div>
+                  )
+                }} />
+
+                <Route exact path={`/${absoluteURIPath}services/:service`} render={()=>{
+                  return (
+                    <div className={`modalbox modalbox--open`}>
+                      <div className={`modalbox__overlay ${customOverlayClass}`} onClick={() => {
+                        //this.closeModalBox();
+                        history.push(`/${absoluteURIPath}`)
+                      }} ></div>
+                      <ServicesWindow {...modalBoxProps} />
+                    </div>
+                  )
+                }} />
               </div>
             )}
           </div>
         </Scroller>
-      </Router>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

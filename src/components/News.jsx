@@ -104,6 +104,8 @@ class News extends Component {
       certifications: certificationsList = []
     } = this.state;
 
+    const appPath = window.DumontSettings.URL.domain;
+    var absoluteURIPath = appPath.replace (/^[a-z]{4,5}\:\/{2}[a-z]{1,}\:[0-9]{1,4}.(.*)/, '$1'); // http or https
 
     // Render Component
     return (
@@ -136,10 +138,10 @@ class News extends Component {
                     <div className="news__cover">
                       <Link
                         className="cover-link"
-                        to={`/our-team/${news.slug}/`}
+                        to={`/${absoluteURIPath}read/${news.slug}/`}
                         onClick={e => {
-                          e.preventDefault();
-                          this.openModalBox(news);
+                          //e.preventDefault();
+                          //this.openModalBox(news);
                         }
                         }>
                         {news.better_featured_image.media_details.sizes.medium && (
