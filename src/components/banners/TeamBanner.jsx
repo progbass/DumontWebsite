@@ -127,7 +127,7 @@ class TeamBanner extends Component {
     // Render Component
     return (
       <section className="home main-banner section">
-        <div className="section--dark section--spacing heroe-banner">
+        <div className="section--dark section--spacing heroe-banner team">
           {members.length > 0 && (
             <ul className="members-list">
               {members.map(member => (

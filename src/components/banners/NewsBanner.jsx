@@ -87,7 +87,7 @@ class NewsBanner extends Component {
         </Link>
       )
     } else {
-      return <img key={banner.id} src={banner.image} />
+      return <img className="image" key={banner.id} src={banner.image} />
     }
   }
   render() {

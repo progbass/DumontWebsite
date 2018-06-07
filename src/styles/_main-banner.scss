@@ -35,14 +35,26 @@
       z-index: 998;
       background: rgba(black, 0.4)
     }
+  }
 
-  	// Tagline
+
+  /////////////////////
+  // TEAM MEMBERS
+  /////////////////////
+  .team{
+    height: 65vh !important;
+    min-height: 50vh;
+    max-height: 600px;
+    overflow: hidden;
+    z-index: 1;
+
+    // Tagline
     .title{
       @include hide-text();
       @include responsive-container(43%);
       @include center-content(50%, 50%);
       z-index: 999;
-    	width: 90%;
+      width: 90%;
       background: url($images_path+'aboutus-header-mobile.svg') no-repeat center;
       background-size: contain;
       text-transform: uppercase;
@@ -116,14 +128,13 @@
     }
   }
 
-
   /////////////////////
   // NEWS CAROUSEL
   /////////////////////
   .carousel{
     height: 50vh !important;
     min-height: 50vh;
-    max-height: 500px;
+    max-height: 600px;
     overflow: hidden;
     z-index: 1;
   
@@ -191,7 +202,7 @@
             margin: 0;
             padding: 0;
             width: 90%;
-            max-width: 680px;//55em;
+            max-width: 600px;//55em;
             line-height: 1.12em;
             text-align: center;
             text-transform: uppercase;
@@ -206,7 +217,10 @@
               text-align: right;
               transform: none;
               top: auto; left: auto; bottom: 0; right: 0;
-              font-size: 10em
+              font-size: 5em
+            }
+            @media screen and (min-width: $bp-desktop-m){
+              font-size: 4em
             }
           }
         }
