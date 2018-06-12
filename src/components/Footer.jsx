@@ -32,7 +32,7 @@ class Footer extends Component {
   }
   componentDidMount(){
     // Load Content
-    axios.get(`${config.api_baseURL}/posts?posts_per_page=100`)
+    axios.get(`${window.DumontSettings.URL.api_baseURL}/posts?posts_per_page=100`)
     .then(response => {
       this.setState({
         posts: response.data,
@@ -41,7 +41,7 @@ class Footer extends Component {
     });
 
     // Load Legals
-    axios.get(`${config.api_baseURL}/pages/195/`)
+    axios.get(`${window.DumontSettings.URL.api_baseURL}/pages/195/`)
     .then(response => {
       this.setState({
         legals: response.data,
@@ -87,10 +87,10 @@ class Footer extends Component {
     document.querySelector('.header-main .fixer').style.position = 'fixed';
   }
   openModalBox(post){
-    this.props.openModalBox(NewsWindow, {post: post});
+    this.props.openModalBox({post: post});
   }
   openLegalModalBox(legals){
-    this.props.openModalBox(LegalWindow, {legals: legals});
+    this.props.openModalBox( {legals: legals});
   }
   render() {
     const {posts, postsLoaded, fixed, legals, legalsLoaded} = this.state;
@@ -116,9 +116,9 @@ class Footer extends Component {
         {legalsLoaded && (
           <Link
             className="legals"
-            to="/aviso-de-confidencialidad/"
+            to={`${window.DumontSettings.path}aviso-de-confidencialidad`}
             onClick={e => {
-              e.preventDefault();
+              //e.preventDefault();
               this.openLegalModalBox(legals)
             }} >
             Privacy Notice

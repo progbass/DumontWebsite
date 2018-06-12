@@ -21,9 +21,8 @@ class NewsWindow extends Component {
     });
   }
   render() {
-    const {article:post} = this.state;
-
-    if(!post) return null;
+    const {article:post} = this.props;
+    if(!post) return <Redirect to={window.DumontSettings.path} />;
 
     // Render Component
     return (
@@ -33,16 +32,19 @@ class NewsWindow extends Component {
           dangerouslySetInnerHTML={{__html:post.title.rendered}} />
 
           <div className="news-modalbox__cover">
-            <img className="image--responsive" src={post.better_featured_image.source_url} alt={post.title.rendered} />
+            <img className="image--responsive" src={post.acf.cover} alt={post.title.rendered} />
           </div>
 
           <div className="news-modalbox__meta">
-            <div className="date">
-              {post.acf.date}
-            </div>
+            {post.acf.date !== '' && (
+              <div className="date">
+                {/*post.acf.date*/}
+              </div>
+            )}
+
             {post.acf.source !== '' && (
               <div className="source">
-                Fuente: {post.acf.source}
+                Fuente: <a href={post.acf.source}>{post.acf.source}</a>
               </div>
             )}
           </div>

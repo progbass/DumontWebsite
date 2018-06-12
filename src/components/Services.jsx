@@ -26,7 +26,7 @@ class Services extends Component {
     scrollToComponent(this.container_ref, {...scrollConfig, offset: -800});
   }
   openModalBox(service){
-    this.props.openModalBox(ServicesWindow, {customOverlayClass: 'modalbox__overlay--purple', service: service, closeModalBox: this.props.closeModalBox});
+    this.props.openModalBox({customOverlayClass: 'modalbox__overlay--purple', service: service, closeModalBox: this.props.closeModalBox});
     //scrollToComponent(this.container_ref, scrollConfig)
   }
   onResize(){
@@ -70,8 +70,8 @@ class Services extends Component {
 
     if(!contentLoaded) return null;
 
-    const appPath = window.DumontSettings.URL.domain;
-    var absoluteURIPath = appPath.replace (/^[a-z]{4,5}\:\/{2}[a-z]{1,}\:[0-9]{1,4}.(.*)/, '$1'); // http or https
+    const appPath = window.DumontSettings.path;
+    var absoluteURIPath = appPath;//appPath.replace (/^[a-z]{4,5}\:\/{2}[a-z]{1,}\:[0-9]{1,4}.(.*)/, '$1'); // http or https
 
     // Render Component
     return (
@@ -88,11 +88,11 @@ class Services extends Component {
                 key={service.id} >
                 <div className="our-services__wrapper"></div>
                 <Link 
-                    to={`/${absoluteURIPath}services/${service.slug}`} 
+                    to={`${absoluteURIPath}services/${service.slug}`} 
                     className="section__link" 
                     onClick={(e) => {
                       //e.preventDefault();
-                      //this.openModalBox(service)
+                      this.openModalBox(service)
                     }}
                   >
                   <h3

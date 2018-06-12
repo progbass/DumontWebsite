@@ -12,18 +12,29 @@
     .title-main {
       margin: 0;
     }
-  } /////////////////////
+  } 
+
+  /////////////////////
   // HEROE BANNER
   /////////////////////
   .heroe-banner {
     padding-bottom: 0;
     p:last-child {
       margin-bottom: 0;
-    } // TITLE
+    }
+
+    // TITLE
     .title-main {
       margin: 0;
       display: none;
-    } //////////////////////////////////
+    } 
+
+    //
+    .section__module {
+      margin-bottom: 0
+    }
+
+    //////////////////////////////////
     // <MEDIA QUERIES
     //////////////////////////////////
     @media screen and (min-width: $bp-tablet-m) {
@@ -47,7 +58,9 @@
         width: 50%;
       }
     }
-  } /////////////////////
+  } 
+
+  /////////////////////
   // NEWS CONTAINER
   /////////////////////
   .news-container {
@@ -68,6 +81,7 @@
         border-right: solid 10px transparent; // Member Image
         &__cover {
           @include responsive-container( 67%);
+          overflow: hidden;
           .cover-link {
             position: absolute;
             top: 0;
@@ -130,7 +144,9 @@
         }
       }
     }
-  } /////////////////
+  } 
+
+  /////////////////
   // AWARDS LIST
   .awards {
     position: relative; // SINGLE MEMBER
@@ -149,7 +165,9 @@
         text-align: center;
       }
     }
-  } /////////////////
+  } 
+
+  /////////////////
   // CERTIFICATIONS LIST
   .certifications {
     position: relative; // SINGLE MEMBER
@@ -168,7 +186,9 @@
         text-align: center;
       }
     }
-  } /////////////////
+  } 
+
+  /////////////////
   // Articles
   .articles {
     .article {
@@ -181,7 +201,9 @@
       color: $color4;
       font-weight: 600;
     }
-  } //////////////////////////////////
+  } 
+
+  //////////////////////////////////
   // HALF CONTAINER
   //////////////////////////////////
   .container--half {
@@ -197,7 +219,9 @@
         padding-right: $margin-base*2
       }
     }
-  } //////////////////////
+  } 
+
+  //////////////////////
   // ASSOCIATIONS LIST
   .associations {
     position: relative; // SINGLE MEMBER
@@ -211,7 +235,9 @@
         margin: 0 1em 1em;
       }
     }
-  } ///////////////////////
+  } 
+
+  ///////////////////////
   // CERTIFICATIONS LIST
   .certifications {
     position: relative; // SINGLE MEMBER

@@ -83,14 +83,14 @@ class Header extends Component {
     const {isOpen, navigatingThroughScroll} = this.props;
     const {isDescriptionOpen} = this.state;
 
-    const appPath = window.DumontSettings.URL.domain;
-    var absoluteURIPath = appPath.replace (/^[a-z]{4,5}\:\/{2}[a-z]{1,}\:[0-9]{1,4}.(.*)/, '$1'); // http or https
+    const appPath = window.DumontSettings.path;
+    var absoluteURIPath = appPath;//appPath.replace (/^[a-z]{4,5}\:\/{2}[a-z]{1,}\:[0-9]{1,4}.(.*)/, '$1'); // http or https
 
     return (
       <header className="header-main">
         <div className="fixer">
           <div className="logo">
-            <Link to={`/${absoluteURIPath}home`} className="logo__link">
+            <Link to={`${absoluteURIPath}home`} className="logo__link">
               <img src={`${window.DumontSettings.URL.theme_url}/build/static/media/logo-header.svg`} className="logo__image image--responsive" alt="Dumont Logo" />
             </Link>
           </div>
@@ -102,7 +102,7 @@ class Header extends Component {
                   <NavLink
                     onClick={e=>{this.props.onMenuItemClick(false)}}
                     activeClassName={!navigatingThroughScroll ? 'active' : 'inactive'}
-                    to={`/${absoluteURIPath}about-us`}>
+                    to={`${absoluteURIPath}about-us`}>
                     About Us
                   </NavLink>
                 </li>
@@ -110,7 +110,7 @@ class Header extends Component {
                   <NavLink
                     onClick={e=>{this.props.onMenuItemClick(false)}}
                     activeClassName={!navigatingThroughScroll ? 'active' : 'inactive'}
-                    to={`/${absoluteURIPath}our-team`}>
+                    to={`${absoluteURIPath}our-team`}>
                     Our Team
                   </NavLink>
                 </li>
@@ -118,7 +118,7 @@ class Header extends Component {
                   <NavLink
                     onClick={e=>{this.props.onMenuItemClick(false)}}
                     activeClassName={!navigatingThroughScroll ? 'active' : 'inactive'}
-                    to={`/${absoluteURIPath}our-services`}>
+                    to={`${absoluteURIPath}our-services`}>
                     Our Services
                   </NavLink>
                 </li>
@@ -126,7 +126,7 @@ class Header extends Component {
                   <NavLink
                     onClick={e=>{this.props.onMenuItemClick(false)}}
                     activeClassName={!navigatingThroughScroll ? 'active' : 'inactive'}
-                    to={`/${absoluteURIPath}news`}>
+                    to={`${absoluteURIPath}news`}>
                     News
                   </NavLink>
                 </li>
@@ -134,7 +134,7 @@ class Header extends Component {
                   <NavLink
                     onClick={e=>{this.props.onMenuItemClick(false)}}
                     activeClassName={!navigatingThroughScroll ? 'active' : 'inactive'}
-                    to={`/${absoluteURIPath}resources`}>
+                    to={`${absoluteURIPath}resources`}>
                     Resources
                   </NavLink>
                 </li>
@@ -142,7 +142,7 @@ class Header extends Component {
                   <NavLink
                     onClick={e=>{this.props.onMenuItemClick(false)}}
                     activeClassName={!navigatingThroughScroll ? 'active' : 'inactive'}
-                    to={`/${absoluteURIPath}contact`}>
+                    to={`${absoluteURIPath}contact`}>
                     Contact
                   </NavLink>
                 </li>

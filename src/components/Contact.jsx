@@ -86,8 +86,8 @@ class Contact extends Component {
     const {isOpen} = this.props;
     const {errors} = this.state;
 
-    const appPath = window.DumontSettings.URL.domain;
-    var absoluteURIPath = appPath.replace (/^[a-z]{4,5}\:\/{2}[a-z]{1,}\:[0-9]{1,4}.(.*)/, '$1'); // http or https
+    const appPath = window.DumontSettings.path;
+    var absoluteURIPath = appPath;//appPath.replace (/^[a-z]{4,5}\:\/{2}[a-z]{1,}\:[0-9]{1,4}.(.*)/, '$1'); // http or https
 
     return (
       <section className="section section--spacing contact desktop-min-height">
@@ -153,7 +153,7 @@ class Contact extends Component {
         </div>
 
         <div className="section__module logo">
-          <Link to={`/${absoluteURIPath}home`} >
+          <Link to={`${absoluteURIPath}home`} >
             <img src={`${window.DumontSettings.URL.theme_url}/build/static/media/logo-footer.svg`} className="image--responsive" alt="Dumont Logo" />
           </Link>
         </div>

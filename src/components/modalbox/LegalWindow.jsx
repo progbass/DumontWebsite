@@ -9,7 +9,7 @@ class LegalWindow extends Component {
   }
   render() {
     const {legals} = this.props;
-    if(!legals) return null;
+    if(!legals) return <Redirect to={window.DumontSettings.path} />;
 
     // Render Component
     return (

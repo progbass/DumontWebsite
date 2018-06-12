@@ -19,7 +19,7 @@ class OurTeam extends Component {
     this.closeModalBox = this.closeModalBox.bind(this);
   }
   openModalBox(member){
-    this.props.openModalBox(ProfileWindow, {teamMember:member} );
+    this.props.openModalBox({teamMember:member} );
   }
   closeModalBox(e){
     e.preventDefault();
@@ -52,8 +52,8 @@ class OurTeam extends Component {
     const ourTeam = posts.find(post => post.slug === 'our-team') || {};
 
     // Link Paths
-    const appPath = window.DumontSettings.URL.domain;
-    var absoluteURIPath = appPath.replace (/^[a-z]{4,5}\:\/{2}[a-z]{1,}\:[0-9]{1,4}.(.*)/, '$1'); // http or https
+    const appPath = window.DumontSettings.path;
+    var absoluteURIPath = appPath;//appPath.replace (/^[a-z]{4,5}\:\/{2}[a-z]{1,}\:[0-9]{1,4}.(.*)/, '$1'); // http or https
 
     
     // Render Component
@@ -92,7 +92,7 @@ class OurTeam extends Component {
                     <div className="member__cover">
                       <Link 
                         className="cover-link" 
-                        to={`/${absoluteURIPath}our-team/${member.slug}/`}  
+                        to={`${absoluteURIPath}our-team/${member.slug}/`}  
                         onClick={e => {
                           this.openModalBox(member);
                           return false;

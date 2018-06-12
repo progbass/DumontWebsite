@@ -18,8 +18,9 @@ import Contact from './components/Contact';
 import Resources from './components/Resources';
 
 import NewsWindow from './components/modalbox/NewsWindow';
-import ServicesWindow from './components/modalbox/ServicesWindow'
-
+import ServicesWindow from './components/modalbox/ServicesWindow';
+import ProfileWindow from './components/modalbox/ProfileWindow';
+import LegalWindow from './components/modalbox/LegalWindow';
 //
 const aboutus_ref = React.createRef();
 const ourteam_ref = React.createRef();
@@ -101,17 +102,18 @@ class App extends Component {
       navigatingThroughScroll: flag
     })
   }
-  openModalBox(component, props) {
+  openModalBox(props) {
     // Get Scroll Position
     this.fixedScrollPosition = document.documentElement.scrollTop;
     document.querySelector('.App > .sections-wrapper').style.position = 'fixed';
+    document.querySelector('.App > .sections-wrapper').style.width = '100%';
     document.querySelector('.App > .sections-wrapper').style.top = `-${this.fixedScrollPosition}px`;
 
 
     //const shouldOpenWindow = flag ? flag : this.state.shouldOpenModalBox;
     this.setState({
-      shouldOpenModalBox: true,
-      modalBoxContent: component,
+      //shouldOpenModalBox: true,
+      //modalBoxContent: component,
       modalBoxProps: props
     })
   }
@@ -125,7 +127,10 @@ class App extends Component {
       shouldOpenModalBox: false,
       modalBoxContent: null,
       modalBoxProps: null
-    })
+    });
+
+    // 
+    this.props.history.push(`${window.DumontSettings.path}`)
   }
   sendContactForm(mailData){
     // Send form
@@ -136,8 +141,8 @@ class App extends Component {
     const customOverlayClass = modalBoxProps && 'customOverlayClass' in modalBoxProps ? modalBoxProps.customOverlayClass : '';
     const { history } = this.props;
 
-    const appPath = window.DumontSettings.URL.domain;
-    var absoluteURIPath = appPath.replace (/^[a-z]{4,5}\:\/{2}[a-z]{1,}\:[0-9]{1,4}.(.*)/, '$1'); // http or https
+    const appPath = window.DumontSettings.path;
+    var absoluteURIPath = appPath;//appPath.replace (/^[a-z]{4,5}\:\/{2}[a-z]{1,}\:[0-9]{1,4}.(.*)/, '$1'); // http or https
 
     return (
         <Scroller>
@@ -173,7 +178,7 @@ class App extends Component {
               <Contact
                 sendContactForm={this.sendContactForm} />
 
-              <Link to={`/${absoluteURIPath}home`} className="back-to-top">Regresar</Link>
+              <Link to={`${absoluteURIPath}home`} className="back-to-top">Regresar</Link>
             </div>
 
             <Footer
@@ -182,33 +187,47 @@ class App extends Component {
               mobileMode={this.state.mobileMode} />
 
             {(shouldOpenModalBox && ModalBoxContent) ? (
-              <div className={`modalbox ${shouldOpenModalBox ? 'modalbox--open' : ''}`}>
-                <div className={`modalbox__overlay ${customOverlayClass}`} onClick={this.closeModalBox} ></div>
-                <ModalBoxContent {...modalBoxProps} />
+              <div className={`modalbox ${shouldOpenModalBox ? 'modalbox--open' : ''}`} onClick={this.closeModalBox}>
+                {/*<div className={`modalbox__overlay ${customOverlayClass}`} ></div>
+                <ModalBoxContent {...modalBoxProps} />*/}
               </div>
               
             ) : (
               <div>
-                <Route exact path={`/${absoluteURIPath}read/:article`} render={()=>{
+                <Route exact path={`${absoluteURIPath}read/:article`} render={()=>{
                   return (
                     <div className={`modalbox modalbox--open`}>
                       <div className={`modalbox__overlay ${customOverlayClass}`} onClick={() => {
-                        //this.closeModalBox();
-                        history.push(`/${absoluteURIPath}`)
+                        this.closeModalBox();
                       }} ></div>
                       <NewsWindow {...modalBoxProps} />
                     </div>
                   )
                 }} />
 
-                <Route exact path={`/${absoluteURIPath}services/:service`} render={()=>{
+                <Route exact path={`${absoluteURIPath}services/:service`} render={()=>{
                   return (
-                    <div className={`modalbox modalbox--open`}>
-                      <div className={`modalbox__overlay ${customOverlayClass}`} onClick={() => {
-                        //this.closeModalBox();
-                        history.push(`/${absoluteURIPath}`)
-                      }} ></div>
+                    <div className={`modalbox modalbox--open`} onClick={this.closeModalBox} >
+                      <div className={`modalbox__overlay ${customOverlayClass}`} ></div>
                       <ServicesWindow {...modalBoxProps} />
+                    </div>
+                  )
+                }} />
+
+                <Route exact path={`${absoluteURIPath}our-team/:member`} render={()=>{
+                  return (
+                    <div className={`modalbox modalbox--open`} >
+                      <div className={`modalbox__overlay ${customOverlayClass}`} onClick={this.closeModalBox} ></div>
+                      <ProfileWindow {...modalBoxProps} />
+                    </div>
+                  )
+                }} />
+
+                <Route exact path={`${absoluteURIPath}aviso-de-confidencialidad`} render={()=>{
+                  return (
+                    <div className={`modalbox modalbox--open`} >
+                      <div className={`modalbox__overlay ${customOverlayClass}`} onClick={this.closeModalBox} ></div>
+                      <LegalWindow {...modalBoxProps} />
                     </div>
                   )
                 }} />

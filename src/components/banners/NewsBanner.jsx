@@ -75,11 +75,12 @@ class NewsBanner extends Component {
   }
   renderImageSlide(banner){
     const linkPath = banner.image_link;
-    var absolutePath = linkPath.replace (/^[a-z]{4,5}\:\/{2}[a-z]{1,}\:[0-9]{1,4}.(.*)/, '$1'); // http or https
+    var absolutePath = linkPath.replace(window.DumontSettings.URL.domain, '');
+    //var absolutePath = linkPath.replace (/^[a-z]{4,5}\:\/{2}[a-z]{1,}\:[0-9]{1,4}.(.*)/, '$1'); // http or https
 
     if(banner.image_link !== ''){
       return (
-        <Link to={`/${absolutePath}`} className="link" >
+        <Link to={`${window.DumontSettings.path}${absolutePath}`} className="link" >
           <img  
             className="image"
             key={banner.id}
@@ -91,7 +92,7 @@ class NewsBanner extends Component {
     }
   }
   render() {
-    const { banners } = this.props;
+    const { banners, delay=5000 } = this.props;
 
     // Render Component
     return (
@@ -101,6 +102,8 @@ class NewsBanner extends Component {
             <Carousel
               autoplay
               wrapAround
+              autoplayInterval={delay}
+              speed={320}
               dragging={false}
               swiping={false}
               slidesToShow="1"

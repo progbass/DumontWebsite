@@ -23,7 +23,8 @@ class MainBanner extends Component {
       //const biography = posts.
       this.setState({
         settings: {
-          banner_type: page_content.acf.banner_type
+          banner_type: page_content.acf.banner_type,
+          banner_interval_delay: page_content.acf.banner_interval_delay*1000 || 5000
         },
         banners: page_content.acf.banners,
         bannersLoaded: true
@@ -40,7 +41,7 @@ class MainBanner extends Component {
     return (
       <div>
         {settings.banner_type === 'news' ? (
-          <NewsBanner banners={banners} />
+          <NewsBanner banners={banners} delay={settings.banner_interval_delay} />
         ) : (
           <TeamBanner {...this.props} />
         )}

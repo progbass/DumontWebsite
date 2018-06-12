@@ -17,8 +17,7 @@ class ProfileWindow extends Component {
   }
   render() {
     const {teamMember} = this.props;
-
-    if(!teamMember) return null;
+    if(!teamMember) return <Redirect to={window.DumontSettings.path} />;
 
     // Render Component
     return (

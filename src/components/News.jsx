@@ -22,9 +22,8 @@ class News extends Component {
     this.openModalBox = this.openModalBox.bind(this);
     this.closeModalBox = this.closeModalBox.bind(this);
   }
-  openModalBox(post) {
-    console.log(post)
-    this.props.openModalBox(NewsWindow, { post: post });
+  openModalBox(article) {
+    this.props.openModalBox({ article });
   }
   closeModalBox(e) {
     e.preventDefault();
@@ -104,8 +103,8 @@ class News extends Component {
       certifications: certificationsList = []
     } = this.state;
 
-    const appPath = window.DumontSettings.URL.domain;
-    var absoluteURIPath = appPath.replace (/^[a-z]{4,5}\:\/{2}[a-z]{1,}\:[0-9]{1,4}.(.*)/, '$1'); // http or https
+    const appPath = window.DumontSettings.path;
+    var absoluteURIPath = appPath;//appPath.replace (/^[a-z]{4,5}\:\/{2}[a-z]{1,}\:[0-9]{1,4}.(.*)/, '$1'); // http or https
 
     // Render Component
     return (
@@ -116,17 +115,18 @@ class News extends Component {
 
         <div className={`accordion-collapsable ${isOpen ? 'accordion-collapsable--open' : ''}`}>
           <div className=" section--spacing heroe-banner">
-            <div className="section__module background-container">
-              <div className={`heroe-banner__title`} >
-                <h2 className="title-main">News</h2>
-              </div>
-              {'content' in newsContent && (
+            {'content' in newsContent && (
+              <div className="section__module background-container">
+                <div className={`heroe-banner__title`} >
+                  <h2 className="title-main">{newsContent.title.rendered}</h2>
+                </div>
+              
                 <div
                   className={`heroe-banner__content`}
                   dangerouslySetInnerHTML={{ __html: newsContent.content.rendered }}
                 />
-              )}
-            </div>
+              </div>
+            )}
           </div>
 
           {newsList.length > 0 && (
@@ -138,15 +138,15 @@ class News extends Component {
                     <div className="news__cover">
                       <Link
                         className="cover-link"
-                        to={`/${absoluteURIPath}read/${news.slug}/`}
+                        to={`${absoluteURIPath}read/${news.slug}/`}
                         onClick={e => {
                           //e.preventDefault();
-                          //this.openModalBox(news);
+                          this.openModalBox(news);
                         }
                         }>
-                        {news.better_featured_image.media_details.sizes.medium && (
+                        {news.acf.cover && (
                           <img
-                            src={news.better_featured_image.source_url}
+                            src={news.acf.cover}
                             className="cover-image image--responsive"
                             alt={news.title.rendered} />
                         )}
